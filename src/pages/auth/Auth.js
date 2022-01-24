@@ -32,6 +32,7 @@ export const Auth = () => {
         <NavLink to='/auth/pricing'>
           <Button block color='primary'>
             <p style={{ fontSize: 23 }}>시작하기</p>
+            <p style={{ fontSize: 16 }}>가격부터 확인할 수 있습니다.</p>
           </Button>
         </NavLink>
 
@@ -41,7 +42,7 @@ export const Auth = () => {
         >
           <AutoCenter style={{ marginTop: 20 }}>
             <div style={{ fontSize: 16, width: '100%' }}>
-              이미 계정이 있으신가요?
+              이미 구매하셨다면 이어서 달려볼까요?
             </div>
           </AutoCenter>
         </NavLink>
