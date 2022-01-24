@@ -8,6 +8,7 @@ import { Reset } from 'styled-reset';
 import { Started } from './components/started/Started';
 import { Auth } from './pages/auth/Auth';
 import { Login } from './pages/auth/Login';
+import { Pricing } from './pages/auth/Pricing';
 
 export const baseURL =
   window.location.host === 'my.hikick.kr'
@@ -31,6 +32,7 @@ ReactDOM.render(
           <Route path='/'>
             <Route path='auth' element={<Started />}>
               <Route index element={<Auth />} />
+              <Route path='pricing' element={<Pricing />} />
               <Route path='login' element={<Login />} />
             </Route>
           </Route>
