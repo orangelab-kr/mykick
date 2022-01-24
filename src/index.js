@@ -5,6 +5,9 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import { Reset } from 'styled-reset';
+import { Started } from './components/started/Started';
+import { Auth } from './pages/auth/Auth';
+import { Pricing } from './pages/auth/Pricing';
 
 export const baseURL =
   window.location.host === 'my.hikick.kr'
@@ -15,6 +18,7 @@ const GlobalStyle = styled.div`
   * {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     -webkit-touch-callout: none;
+    font-family: 'NanumSquare', sans-serif;
   }
 `;
 
@@ -24,7 +28,11 @@ ReactDOM.render(
     <GlobalStyle>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<p>Hello World!</p>} />
+          <Route path='/'>
+            <Route path='auth' element={<Started />}>
+              <Route index element={<Auth />} />
+            </Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </GlobalStyle>
