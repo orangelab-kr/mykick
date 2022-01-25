@@ -12,7 +12,7 @@ export const Main = () => {
     <div>
       <StartedTitle>마이킥</StartedTitle>
       <StartedDescription>나만의 튼튼한 하이킥 킥보드</StartedDescription>
-      <StartedHashtags>#튼튼한 #하이킥 #마이킥</StartedHashtags>
+      <StartedHashtags>#튼튼한 #킥보드 #마이킥</StartedHashtags>
       <AutoCenter style={{ overflow: 'hidden' }}>
         <Lottie
           options={{ animationData }}

@@ -6,8 +6,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import { Reset } from 'styled-reset';
 import { Started } from './components/started/Started';
-import { Main } from './pages/started/Main';
+import { Estimate } from './pages/started/Estimate';
 import { Login } from './pages/started/Login';
+import { Main } from './pages/started/Main';
 import { MyCare } from './pages/started/MyCare';
 import { MySafe } from './pages/started/MySafe';
 import { Pricing } from './pages/started/Pricing';
@@ -37,6 +38,7 @@ ReactDOM.render(
               <Route path='pricing' element={<Pricing />} />
               <Route path='mysafe' element={<MySafe />} />
               <Route path='mycare' element={<MyCare />} />
+              <Route path='estimate' element={<Estimate />} />
               <Route path='login' element={<Login />} />
             </Route>
           </Route>

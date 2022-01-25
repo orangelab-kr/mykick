@@ -39,7 +39,7 @@ export const MySafe = () => {
         </NoStyledLink>
 
         <NoStyledLink
-          to='/started/login'
+          to='/started/mycare'
           style={{ textDecoration: 'none', color: 'black' }}
         >
           <AutoCenter style={{ marginTop: 20 }}>
