@@ -1,5 +1,6 @@
 import { AutoCenter, Button } from 'antd-mobile';
 import { NoStyledLink } from '../../components/Link';
+import { StartedBottom } from '../../components/started/StartedBottom';
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedIndicator } from '../../components/started/StartedIndicator';
@@ -12,15 +13,7 @@ export const Pricing = () => {
       <StartedDescription>먼저, 상품을 선택해볼까요?</StartedDescription>
       <StartedHashtags>#원하는 #만큼만 #마이킥</StartedHashtags>
       <p>대충 가격표가 있을거임</p>
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '6%',
-          left: '50%',
-          width: '85%',
-          transform: 'translate(-50%, 0)',
-        }}
-      >
+      <StartedBottom>
         <StartedIndicator current={0} />
         <NoStyledLink to='/auth/mysafe'>
           <Button block color='primary'>
@@ -39,7 +32,7 @@ export const Pricing = () => {
             </div>
           </AutoCenter>
         </NoStyledLink>
-      </div>
+      </StartedBottom>
     </div>
   );
 };

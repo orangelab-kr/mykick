@@ -1,5 +1,6 @@
 import { AutoCenter, Button } from 'antd-mobile';
 import { NoStyledLink } from '../../components/Link';
+import { StartedBottom } from '../../components/started/StartedBottom';
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedIndicator } from '../../components/started/StartedIndicator';
@@ -22,23 +23,15 @@ export const MySafe = () => {
           title='💰 자기부담금'
           description={
             <>
-              <p>사고당 1백만원</p>
-              <p>치료비 20만원</p>
+              <p>사고당 / 1백만원</p>
+              <p>치료비 / 20만원</p>
             </>
           }
         />
       </StartedMySafe>
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '6%',
-          left: '50%',
-          width: '85%',
-          transform: 'translate(-50%, 0)',
-        }}
-      >
+      <StartedBottom>
         <StartedIndicator current={1} />
-        <NoStyledLink to='/auth/mysafe'>
+        <NoStyledLink to='/auth/mycare'>
           <Button block color='primary'>
             <p style={{ fontSize: 23 }}>마이세이프 추가하기</p>
             <p style={{ fontSize: 16 }}>월 16,000원</p>
@@ -53,7 +46,7 @@ export const MySafe = () => {
             <div style={{ fontSize: 16, width: '100%' }}>건너뛰기</div>
           </AutoCenter>
         </NoStyledLink>
-      </div>
+      </StartedBottom>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { AutoCenter, Button, Dialog, Form, Input } from 'antd-mobile';
-import { MessageOutline, RedoOutline } from 'antd-mobile-icons';
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NoStyledLink } from '../../components/Link';
+import { StartedBottom } from '../../components/started/StartedBottom';
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedTitle } from '../../components/started/StartedTitle';
@@ -52,33 +52,21 @@ export const Login = () => {
           />
         </Form.Item>
       </Form>
-
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '6%',
-          left: '50%',
-          width: '85%',
-          transform: 'translate(-50%, 0)',
-        }}
-      >
-        <NavLink to='/auth/pricing'>
+      <StartedBottom>
+        <NoStyledLink to='/auth/pricing'>
           <Button block color='primary'>
             <p style={{ fontSize: 23 }}>로그인</p>
           </Button>
-        </NavLink>
+        </NoStyledLink>
 
-        <NavLink
-          to='/auth/pricing'
-          style={{ textDecoration: 'none', color: 'black' }}
-        >
+        <NoStyledLink to='/auth/pricing'>
           <AutoCenter style={{ marginTop: 20 }}>
             <div style={{ fontSize: 16, width: '100%' }}>
               아직 마이킥이 없으신가요?
             </div>
           </AutoCenter>
-        </NavLink>
-      </div>
+        </NoStyledLink>
+      </StartedBottom>
     </div>
   );
 };
