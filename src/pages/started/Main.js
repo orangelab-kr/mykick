@@ -1,7 +1,9 @@
-import { AutoCenter, Button } from 'antd-mobile';
+import { AutoCenter } from 'antd-mobile';
 import Lottie from 'react-lottie';
 import { NoStyledLink } from '../../components/NoStyledLink';
-import { StartedBottom } from '../../components/started/StartedBottom';
+import { StartedBottom } from '../../components/started/StartedBottom/StartedBottom';
+import { StartedBottomPrimary } from '../../components/started/StartedBottom/StartedBottomPrimary';
+import { StartedBottomSecondary } from '../../components/started/StartedBottom/StartedBottomSecondary';
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedTitle } from '../../components/started/StartedTitle';
@@ -23,18 +25,15 @@ export const Main = () => {
 
       <StartedBottom>
         <NoStyledLink to='/started/pricing'>
-          <Button block color='primary'>
-            <p style={{ fontSize: 23 }}>시작하기</p>
-            <p style={{ fontSize: 16 }}>가격부터 확인하고 결정하세요!</p>
-          </Button>
+          <StartedBottomPrimary description='가격부터 확인하고 결정하세요.'>
+            시작하기
+          </StartedBottomPrimary>
         </NoStyledLink>
 
         <NoStyledLink to='/started/login'>
-          <AutoCenter style={{ marginTop: 20 }}>
-            <div style={{ fontSize: 16, width: '100%' }}>
-              이미 구매하셨다면 이어서 달려볼까요?
-            </div>
-          </AutoCenter>
+          <StartedBottomSecondary>
+            이미 구매하셨다면 이어서 달려볼까요?
+          </StartedBottomSecondary>
         </NoStyledLink>
       </StartedBottom>
     </div>

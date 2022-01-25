@@ -1,6 +1,7 @@
-import { AutoCenter, Button } from 'antd-mobile';
 import { NoStyledLink } from '../../components/NoStyledLink';
-import { StartedBottom } from '../../components/started/StartedBottom';
+import { StartedBottom } from '../../components/started/StartedBottom/StartedBottom';
+import { StartedBottomPrimary } from '../../components/started/StartedBottom/StartedBottomPrimary';
+import { StartedBottomSecondary } from '../../components/started/StartedBottom/StartedBottomSecondary';
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedIndicator } from '../../components/started/StartedIndicator';
@@ -12,7 +13,7 @@ export const MySafe = () => {
   return (
     <div>
       <StartedTitle subtitle='선택상품'>마이세이프</StartedTitle>
-      <StartedDescription>⛑ 마이킥을 위한 보험 서비스!</StartedDescription>
+      <StartedDescription>마이킥을 위한 보험 서비스</StartedDescription>
       <StartedHashtags>#무엇보다 #안전은 #마이킥</StartedHashtags>
 
       <StartedMySafe>
@@ -32,19 +33,13 @@ export const MySafe = () => {
       <StartedBottom>
         <StartedIndicator current={1} />
         <NoStyledLink to='/started/mycare'>
-          <Button block color='primary'>
-            <p style={{ fontSize: 23 }}>마이세이프 추가하기</p>
-            <p style={{ fontSize: 16 }}>월 16,000원</p>
-          </Button>
+          <StartedBottomPrimary description='월 16,000원'>
+            마이세이프 포함하기
+          </StartedBottomPrimary>
         </NoStyledLink>
 
-        <NoStyledLink
-          to='/started/mycare'
-          style={{ textDecoration: 'none', color: 'black' }}
-        >
-          <AutoCenter style={{ marginTop: 20 }}>
-            <div style={{ fontSize: 16, width: '100%' }}>건너뛰기</div>
-          </AutoCenter>
+        <NoStyledLink to='/started/mycare'>
+          <StartedBottomSecondary>건너뛰기</StartedBottomSecondary>
         </NoStyledLink>
       </StartedBottom>
     </div>

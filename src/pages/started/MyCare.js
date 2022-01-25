@@ -1,6 +1,7 @@
-import { AutoCenter, Button } from 'antd-mobile';
 import { NoStyledLink } from '../../components/NoStyledLink';
-import { StartedBottom } from '../../components/started/StartedBottom';
+import { StartedBottom } from '../../components/started/StartedBottom/StartedBottom';
+import { StartedBottomPrimary } from '../../components/started/StartedBottom/StartedBottomPrimary';
+import { StartedBottomSecondary } from '../../components/started/StartedBottom/StartedBottomSecondary';
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedIndicator } from '../../components/started/StartedIndicator';
@@ -22,18 +23,15 @@ export const MyCare = () => {
         택하여 예약 후 수리 가능합니다. (픽업 및 배송 3만원 추가 별도 발생)
       </p>
       <StartedBottom>
-        <StartedIndicator current={1} />
+        <StartedIndicator current={2} />
         <NoStyledLink to='/started/estimate'>
-          <Button block color='primary'>
-            <p style={{ fontSize: 23 }}>마이케어 추가하기</p>
-            <p style={{ fontSize: 16 }}>월 16,000원 / 선결제</p>
-          </Button>
+          <StartedBottomPrimary description='월 16,000원 / 선결제'>
+            마이케어 포함하기
+          </StartedBottomPrimary>
         </NoStyledLink>
 
         <NoStyledLink to='/started/estimate'>
-          <AutoCenter style={{ marginTop: 20 }}>
-            <div style={{ fontSize: 16, width: '100%' }}>건너뛰기</div>
-          </AutoCenter>
+          <StartedBottomSecondary>건너뛰기</StartedBottomSecondary>
         </NoStyledLink>
       </StartedBottom>
     </div>

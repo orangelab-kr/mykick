@@ -1,7 +1,9 @@
-import { AutoCenter, Button, Dialog, Form, Input } from 'antd-mobile';
+import { Button, Dialog, Form, Input } from 'antd-mobile';
 import { useState } from 'react';
 import { NoStyledLink } from '../../components/NoStyledLink';
-import { StartedBottom } from '../../components/started/StartedBottom';
+import { StartedBottom } from '../../components/started/StartedBottom/StartedBottom';
+import { StartedBottomPrimary } from '../../components/started/StartedBottom/StartedBottomPrimary';
+import { StartedBottomSecondary } from '../../components/started/StartedBottom/StartedBottomSecondary';
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedTitle } from '../../components/started/StartedTitle';
@@ -34,7 +36,7 @@ export const Login = () => {
     <div>
       <StartedTitle>로그인</StartedTitle>
       <StartedDescription>전화번호로 간편하게 Ready!</StartedDescription>
-      <StartedHashtags>#이어서 #달려봐요! #마이킥</StartedHashtags>
+      <StartedHashtags>#이어서 #달려봐요 #마이킥</StartedHashtags>
       <Form form={form} style={{ marginTop: '10%' }}>
         <Form.Item name='phoneNo' label='전화번호'>
           <Input
@@ -54,17 +56,13 @@ export const Login = () => {
       </Form>
       <StartedBottom>
         <NoStyledLink to='/started/pricing'>
-          <Button block color='primary'>
-            <p style={{ fontSize: 23 }}>로그인</p>
-          </Button>
+          <StartedBottomPrimary>로그인</StartedBottomPrimary>
         </NoStyledLink>
 
         <NoStyledLink to='/started/pricing'>
-          <AutoCenter style={{ marginTop: 20 }}>
-            <div style={{ fontSize: 16, width: '100%' }}>
-              아직 마이킥이 없으신가요?
-            </div>
-          </AutoCenter>
+          <StartedBottomSecondary>
+            아직 마이킥이 없으신가요?
+          </StartedBottomSecondary>
         </NoStyledLink>
       </StartedBottom>
     </div>

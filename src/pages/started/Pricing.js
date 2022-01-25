@@ -1,6 +1,7 @@
-import { AutoCenter, Button } from 'antd-mobile';
 import { NoStyledLink } from '../../components/NoStyledLink';
-import { StartedBottom } from '../../components/started/StartedBottom';
+import { StartedBottom } from '../../components/started/StartedBottom/StartedBottom';
+import { StartedBottomPrimary } from '../../components/started/StartedBottom/StartedBottomPrimary';
+import { StartedBottomSecondary } from '../../components/started/StartedBottom/StartedBottomSecondary';
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedIndicator } from '../../components/started/StartedIndicator';
@@ -16,21 +17,15 @@ export const Pricing = () => {
       <StartedBottom>
         <StartedIndicator current={0} />
         <NoStyledLink to='/started/mysafe'>
-          <Button block color='primary'>
-            <p style={{ fontSize: 23 }}>이어서 진행해볼까요?</p>
-            <p style={{ fontSize: 16 }}>월 38,000원</p>
-          </Button>
+          <StartedBottomPrimary description='월 38,000원'>
+            이어서 진행해볼까요?
+          </StartedBottomPrimary>
         </NoStyledLink>
 
-        <NoStyledLink
-          to='/started/login'
-          style={{ textDecoration: 'none', color: 'black' }}
-        >
-          <AutoCenter style={{ marginTop: 20 }}>
-            <div style={{ fontSize: 16, width: '100%' }}>
-              이미 계정이 있으신가요?
-            </div>
-          </AutoCenter>
+        <NoStyledLink to='/started/login'>
+          <StartedBottomSecondary>
+            이미 계정이 있으신가요?
+          </StartedBottomSecondary>
         </NoStyledLink>
       </StartedBottom>
     </div>
