@@ -1,6 +1,6 @@
 import { AutoCenter, Button, Dialog, Form, Input } from 'antd-mobile';
 import { useState } from 'react';
-import { NoStyledLink } from '../../components/Link';
+import { NoStyledLink } from '../../components/NoStyledLink';
 import { StartedBottom } from '../../components/started/StartedBottom';
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
@@ -53,13 +53,13 @@ export const Login = () => {
         </Form.Item>
       </Form>
       <StartedBottom>
-        <NoStyledLink to='/auth/pricing'>
+        <NoStyledLink to='/started/pricing'>
           <Button block color='primary'>
             <p style={{ fontSize: 23 }}>로그인</p>
           </Button>
         </NoStyledLink>
 
-        <NoStyledLink to='/auth/pricing'>
+        <NoStyledLink to='/started/pricing'>
           <AutoCenter style={{ marginTop: 20 }}>
             <div style={{ fontSize: 16, width: '100%' }}>
               아직 마이킥이 없으신가요?

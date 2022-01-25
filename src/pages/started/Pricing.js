@@ -1,5 +1,5 @@
 import { AutoCenter, Button } from 'antd-mobile';
-import { NoStyledLink } from '../../components/Link';
+import { NoStyledLink } from '../../components/NoStyledLink';
 import { StartedBottom } from '../../components/started/StartedBottom';
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
@@ -15,7 +15,7 @@ export const Pricing = () => {
       <p>대충 가격표가 있을거임</p>
       <StartedBottom>
         <StartedIndicator current={0} />
-        <NoStyledLink to='/auth/mysafe'>
+        <NoStyledLink to='/started/mysafe'>
           <Button block color='primary'>
             <p style={{ fontSize: 23 }}>이어서 진행해볼까요?</p>
             <p style={{ fontSize: 16 }}>월 38,000원</p>
@@ -23,7 +23,7 @@ export const Pricing = () => {
         </NoStyledLink>
 
         <NoStyledLink
-          to='/auth/login'
+          to='/started/login'
           style={{ textDecoration: 'none', color: 'black' }}
         >
           <AutoCenter style={{ marginTop: 20 }}>

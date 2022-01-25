@@ -2,13 +2,6 @@ import { Divider, Grid } from 'antd-mobile';
 import styled from 'styled-components';
 
 export const StartedMySafe = ({ children }) => {
-  const TitleContainer = styled.p`
-    text-align: right;
-    margin: 20px 0;
-    font-size: 18px;
-    font-weight: 800;
-  `;
-
   const WarningContainer = styled.p`
     padding: 15px 15px;
     font-size: 14px;
@@ -25,7 +18,7 @@ export const StartedMySafe = ({ children }) => {
       <Divider />
       <WarningContainer>
         <p style={{ textAlign: 'center', fontSize: 16, marginBottom: 0 }}>
-          💫 운행 중 제3자에 대한 배상책임 💫
+          운행 중 제3자에 대한 배상책임
         </p>
         <p style={{ margin: '10px 0' }}>
           ⚡️ 이용 중 사고에만 보상이 가능하며, 신청자(1명)에 한해 보험이

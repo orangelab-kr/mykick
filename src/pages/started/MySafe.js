@@ -1,5 +1,5 @@
 import { AutoCenter, Button } from 'antd-mobile';
-import { NoStyledLink } from '../../components/Link';
+import { NoStyledLink } from '../../components/NoStyledLink';
 import { StartedBottom } from '../../components/started/StartedBottom';
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
@@ -31,7 +31,7 @@ export const MySafe = () => {
       </StartedMySafe>
       <StartedBottom>
         <StartedIndicator current={1} />
-        <NoStyledLink to='/auth/mycare'>
+        <NoStyledLink to='/started/mycare'>
           <Button block color='primary'>
             <p style={{ fontSize: 23 }}>마이세이프 추가하기</p>
             <p style={{ fontSize: 16 }}>월 16,000원</p>
@@ -39,7 +39,7 @@ export const MySafe = () => {
         </NoStyledLink>
 
         <NoStyledLink
-          to='/auth/login'
+          to='/started/login'
           style={{ textDecoration: 'none', color: 'black' }}
         >
           <AutoCenter style={{ marginTop: 20 }}>

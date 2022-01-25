@@ -6,10 +6,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import { Reset } from 'styled-reset';
 import { Started } from './components/started/Started';
-import { Auth } from './pages/auth/Auth';
-import { Login } from './pages/auth/Login';
-import { Pricing } from './pages/auth/Pricing';
-import { MySafe } from './pages/auth/MySafe';
+import { Main } from './pages/started/Main';
+import { Login } from './pages/started/Login';
+import { MyCare } from './pages/started/MyCare';
+import { MySafe } from './pages/started/MySafe';
+import { Pricing } from './pages/started/Pricing';
 
 export const baseURL =
   window.location.host === 'my.hikick.kr'
@@ -31,10 +32,11 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
           <Route path='/'>
-            <Route path='auth' element={<Started />}>
-              <Route index element={<Auth />} />
+            <Route path='started' element={<Started />}>
+              <Route index element={<Main />} />
               <Route path='pricing' element={<Pricing />} />
               <Route path='mysafe' element={<MySafe />} />
+              <Route path='mycare' element={<MyCare />} />
               <Route path='login' element={<Login />} />
             </Route>
           </Route>

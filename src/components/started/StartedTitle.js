@@ -9,7 +9,7 @@ const Title = styled.div`
 const Subtitle = styled.p`
   display: inline;
   margin-left: 5px;
-  font-size: 1em;
+  font-size: 0.5em;
   font-weight: 400;
 `;
 
