@@ -1,16 +1,16 @@
 import { AutoCenter, PageIndicator } from 'antd-mobile';
 
 export const StartedIndicator = ({ current }) => (
-  <AutoCenter style={{ marginBottom: 10 }}>
+  <AutoCenter style={{ marginBottom: '.5em' }}>
     <PageIndicator
       total={4}
       current={current}
       style={{
-        '--dot-size': '6px',
-        '--active-dot-size': '20px',
+        '--dot-size': '.4em',
+        '--active-dot-size': '.7em',
         '--dot-border-radius': '50%',
         '--active-dot-border-radius': '15px',
-        '--dot-spacing': '4px',
+        '--dot-spacing': '.15em',
       }}
     />
   </AutoCenter>

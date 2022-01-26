@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const StartedEstimateTitle = () => {
   const TitleGrid = styled(Grid)`
-    margin-top: 30px;
+    margin-top: 15px;
     font-weight: 600;
     font-size: 0.9em;
   `;

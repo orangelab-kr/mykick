@@ -14,7 +14,7 @@ export const StartedEstimate = ({ children, price }) => {
 
   const EstimateGrid = styled(Grid)`
     font-size: 0.8em;
-    max-height: 55vmin;
+    height: 45vmin;
     overflow: scroll;
   `;
 
@@ -25,23 +25,26 @@ export const StartedEstimate = ({ children, price }) => {
   );
 
   return (
-    <Popover
-      destroyOnHide
-      placement='top'
-      stopPropagation={[]}
-      visible={visibleTip}
-      content={PopoverTip}
-      onClick={setVisibleTip(false)}
-      onTouchStart={setVisibleTip(false)}
-    >
-      <div>
-        <StartedEstimateTitle />
-        <EstimateDashedDivider />
-        <EstimateGrid columns={3} gap={[0, 32]}>
-          {children}
-        </EstimateGrid>
-        <StartedEstimatePrice price={price} />
-      </div>
-    </Popover>
+    <div>
+      <EstimateDashedDivider />
+      <StartedEstimatePrice price={price} />
+      <Popover
+        destroyOnHide
+        placement='top'
+        stopPropagation={[]}
+        visible={visibleTip}
+        content={PopoverTip}
+        onClick={setVisibleTip(false)}
+        onTouchStart={setVisibleTip(false)}
+      >
+        <div>
+          <StartedEstimateTitle />
+          <EstimateDashedDivider />
+          <EstimateGrid columns={3} gap={[0, 32]}>
+            {children}
+          </EstimateGrid>
+        </div>
+      </Popover>
+    </div>
   );
 };

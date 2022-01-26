@@ -1,6 +1,12 @@
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const GobackLink = ({ children, to }) => {
   const navigator = useNavigate();
-  return <div onClick={() => navigator(to || -1)}>{children}</div>;
+  const Container = styled.div`
+    cursor: pointer;
+    text-decoration: none;
+  `;
+
+  return <Container onClick={() => navigator(to || -1)}>{children}</Container>;
 };

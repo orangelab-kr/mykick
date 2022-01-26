@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StartedBottom = styled.div`
-  position: absolute;
+  position: fixed;
   bottom: 6%;
   left: 50%;
   width: 85%;

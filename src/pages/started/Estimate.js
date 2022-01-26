@@ -5,6 +5,7 @@ import { StartedBottomPrimary } from '../../components/started/StartedBottom/Sta
 import { StartedBottomSecondary } from '../../components/started/StartedBottom/StartedBottomSecondary';
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedEstimate } from '../../components/started/StartedEstimate/StartedEstimate';
+import { StartedEstimateFirstPrice } from '../../components/started/StartedEstimate/StartedEstimateFirstPrice';
 import { StartedEstimateItem } from '../../components/started/StartedEstimate/StartedEstimateItem';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedIndicator } from '../../components/started/StartedIndicator';
@@ -56,6 +57,7 @@ export const Estimate = () => {
             />
           </StartedEstimate>
           <StartedBottom>
+            <StartedEstimateFirstPrice price={3000} />
             <StartedIndicator current={3} />
             <NoStyledLink to='/auth/signup'>
               <StartedBottomPrimary description='월 16,000원 (배송비 무료)'>
