@@ -21,7 +21,7 @@ export const Pricing = () => {
           </StartedBottomPrimary>
         </NoStyledLink>
 
-        <NoStyledLink to='/started/login'>
+        <NoStyledLink to='/auth/login'>
           <StartedBottomSecondary>
             이미 계정이 있으신가요?
           </StartedBottomSecondary>

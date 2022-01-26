@@ -30,7 +30,7 @@ export const Main = () => {
           </StartedBottomPrimary>
         </NoStyledLink>
 
-        <NoStyledLink to='/started/login'>
+        <NoStyledLink to='/auth/login'>
           <StartedBottomSecondary>
             이미 구매하셨다면 이어서 달려볼까요?
           </StartedBottomSecondary>

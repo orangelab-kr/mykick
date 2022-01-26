@@ -55,11 +55,9 @@ export const Login = () => {
         </Form.Item>
       </Form>
       <StartedBottom>
-        <NoStyledLink to='/started/pricing'>
-          <StartedBottomPrimary>로그인</StartedBottomPrimary>
-        </NoStyledLink>
+        <StartedBottomPrimary>로그인</StartedBottomPrimary>
 
-        <NoStyledLink to='/started/pricing'>
+        <NoStyledLink to='/'>
           <StartedBottomSecondary>
             아직 마이킥이 없으신가요?
           </StartedBottomSecondary>

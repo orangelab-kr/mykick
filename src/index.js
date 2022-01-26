@@ -2,12 +2,13 @@ import React from 'react';
 import 'react-app-polyfill/ie9';
 import 'react-app-polyfill/stable';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import { Reset } from 'styled-reset';
 import { Started } from './components/started/Started';
+import { Login } from './pages/auth/Login';
+import { SignupInfo } from './pages/auth/signup/SignupInfo';
 import { Estimate } from './pages/started/Estimate';
-import { Login } from './pages/started/Login';
 import { Main } from './pages/started/Main';
 import { MyCare } from './pages/started/MyCare';
 import { MySafe } from './pages/started/MySafe';
@@ -33,13 +34,21 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
           <Route path='/'>
+            <Route index element={<Navigate to='/started' />} />
             <Route path='started' element={<Started />}>
               <Route index element={<Main />} />
               <Route path='pricing' element={<Pricing />} />
               <Route path='mysafe' element={<MySafe />} />
               <Route path='mycare' element={<MyCare />} />
               <Route path='estimate' element={<Estimate />} />
+            </Route>
+            <Route path='auth' element={<Started />}>
+              <Route index element={<Navigate to='/auth/login' />} />
               <Route path='login' element={<Login />} />
+              <Route path='signup'>
+                <Route index element={<Navigate to='/auth/signup/info' />} />
+                <Route path='info' element={<SignupInfo />} />
+              </Route>
             </Route>
           </Route>
         </Routes>

@@ -57,13 +57,13 @@ export const Estimate = () => {
           </StartedEstimate>
           <StartedBottom>
             <StartedIndicator current={3} />
-            <NoStyledLink to='/started/signup'>
+            <NoStyledLink to='/auth/signup'>
               <StartedBottomPrimary description='월 16,000원 (배송비 무료)'>
                 내 정보 입력하기
               </StartedBottomPrimary>
             </NoStyledLink>
 
-            <NoStyledLink to='/started'>
+            <NoStyledLink to='/'>
               <StartedBottomSecondary>나중에 다시하기</StartedBottomSecondary>
             </NoStyledLink>
           </StartedBottom>
