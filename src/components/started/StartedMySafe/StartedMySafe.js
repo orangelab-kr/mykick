@@ -2,7 +2,7 @@ import { Divider, Grid } from 'antd-mobile';
 import styled from 'styled-components';
 
 export const StartedMySafe = ({ children }) => {
-  const WarningContainer = styled.p`
+  const WarningContainer = styled.div`
     padding: 1em 1em;
     font-size: 0.8em;
     word-break: keep-all;

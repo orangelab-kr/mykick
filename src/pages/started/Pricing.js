@@ -13,7 +13,6 @@ export const Pricing = () => {
       <StartedTitle>상품</StartedTitle>
       <StartedDescription>먼저, 상품을 선택해볼까요?</StartedDescription>
       <StartedHashtags>#원하는 #만큼만 #마이킥</StartedHashtags>
-      <p>대충 가격표가 있을거임</p>
       <StartedBottom>
         <StartedIndicator current={0} />
         <NoStyledLink to='/started/mysafe'>

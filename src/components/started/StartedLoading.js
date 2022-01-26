@@ -2,8 +2,8 @@ import { AutoCenter, SpinLoading } from 'antd-mobile';
 import styled from 'styled-components';
 
 export const StartedLoading = ({ loading, children }) => {
-  if (!loading) <></>;
-  const LoadingText = styled.p`
+  if (!loading) return <></>;
+  const LoadingText = styled.div`
     text-align: center;
     margin-top: 30px;
     font-size: 15px;
