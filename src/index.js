@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { Reset } from 'styled-reset';
 import { Started } from './components/started/Started';
 import { Login } from './pages/auth/Login';
+import { SignupAddress } from './pages/auth/signup/SignupAddress';
 import { SignupInfo } from './pages/auth/signup/SignupInfo';
 import { Estimate } from './pages/started/Estimate';
 import { Main } from './pages/started/Main';
@@ -48,6 +49,7 @@ ReactDOM.render(
               <Route path='signup'>
                 <Route index element={<Navigate to='/auth/signup/info' />} />
                 <Route path='info' element={<SignupInfo />} />
+                <Route path='address' element={<SignupAddress />} />
               </Route>
             </Route>
           </Route>

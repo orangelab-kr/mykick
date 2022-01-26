@@ -62,9 +62,9 @@ export const SignupInfo = () => {
       </Form>
       <StartedBottom>
         <StartedIndicator current={2} />
-        <NoStyledLink to='/started/estimate'>
-          <StartedBottomPrimary description='이어서 진행하기'>
-            주소지 입력하기
+        <NoStyledLink to='/auth/signup/address'>
+          <StartedBottomPrimary description='배송지 입력하기'>
+            모두 다 입력했습니다.
           </StartedBottomPrimary>
         </NoStyledLink>
 
