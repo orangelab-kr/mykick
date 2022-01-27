@@ -7,12 +7,15 @@ import { StartedBottomSecondary } from '../../components/started/StartedBottom/S
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedTitle } from '../../components/started/StartedTitle';
-import * as animationData from '../../lotties/lf30_tjdy9hfq.json';
+import * as animationData from '../../assets/lotties/lf30_tjdy9hfq.json';
+import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
 
 export const Main = () => {
   return (
     <div>
-      <StartedTitle>마이킥</StartedTitle>
+      <StartedTitle>
+        <Logo style={{ height: '.8em' }} />
+      </StartedTitle>
       <StartedDescription>나만의 튼튼한 하이킥 킥보드</StartedDescription>
       <StartedHashtags>#튼튼한 #킥보드 #마이킥</StartedHashtags>
       <AutoCenter style={{ overflow: 'hidden' }}>

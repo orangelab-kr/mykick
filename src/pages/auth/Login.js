@@ -7,6 +7,7 @@ import { StartedBottomSecondary } from '../../components/started/StartedBottom/S
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedTitle } from '../../components/started/StartedTitle';
+import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
 
 export const Login = () => {
   const [form] = Form.useForm();
@@ -59,7 +60,7 @@ export const Login = () => {
 
         <NoStyledLink to='/'>
           <StartedBottomSecondary>
-            아직 마이킥이 없으신가요?
+            아직 <Logo style={{ height: '.8em' }} /> 이 없으신가요?
           </StartedBottomSecondary>
         </NoStyledLink>
       </StartedBottom>

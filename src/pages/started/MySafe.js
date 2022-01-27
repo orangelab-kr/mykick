@@ -8,12 +8,15 @@ import { StartedIndicator } from '../../components/started/StartedIndicator';
 import { StartedMySafe } from '../../components/started/StartedMySafe/StartedMySafe';
 import { StartedMySafeItem } from '../../components/started/StartedMySafe/StartedMySafeItem';
 import { StartedTitle } from '../../components/started/StartedTitle';
+import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
 
 export const MySafe = () => {
   return (
     <div>
       <StartedTitle subtitle='선택상품'>마이세이프</StartedTitle>
-      <StartedDescription>마이킥을 위한 보험 서비스</StartedDescription>
+      <StartedDescription>
+        <Logo style={{ height: '.8em' }} /> 을 위한 보험 서비스
+      </StartedDescription>
       <StartedHashtags>#무엇보다 #안전은 #마이킥</StartedHashtags>
 
       <StartedMySafe>
