@@ -1,5 +1,5 @@
 import { Form, Input } from 'antd-mobile';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import { GobackLink } from '../../../components/GobackLink';
 import { NoStyledLink } from '../../../components/NoStyledLink';

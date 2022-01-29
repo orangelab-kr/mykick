@@ -56,7 +56,9 @@ export const Login = () => {
         </Form.Item>
       </Form>
       <StartedBottom>
-        <StartedBottomPrimary>로그인</StartedBottomPrimary>
+        <StartedBottomPrimary description='이어서 달려볼까요?'>
+          로그인
+        </StartedBottomPrimary>
 
         <NoStyledLink to='/'>
           <StartedBottomSecondary>
