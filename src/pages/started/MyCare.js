@@ -1,3 +1,4 @@
+import { DepthPage } from '../../components/DepthPage';
 import { NoStyledLink } from '../../components/NoStyledLink';
 import { StartedBottom } from '../../components/started/StartedBottom/StartedBottom';
 import { StartedBottomPrimary } from '../../components/started/StartedBottom/StartedBottomPrimary';
@@ -9,7 +10,7 @@ import { StartedTitle } from '../../components/started/StartedTitle';
 
 export const MyCare = () => {
   return (
-    <div>
+    <DepthPage>
       <StartedTitle subtitle='추가상품'>마이케어</StartedTitle>
       <StartedDescription>소모품을 제한없이 수리 받으세요!</StartedDescription>
       <StartedHashtags>#걱정없이 #이용하는 #마이킥</StartedHashtags>
@@ -34,6 +35,6 @@ export const MyCare = () => {
           <StartedBottomSecondary>건너뛰기</StartedBottomSecondary>
         </NoStyledLink>
       </StartedBottom>
-    </div>
+    </DepthPage>
   );
 };

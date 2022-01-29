@@ -9,10 +9,11 @@ import { StartedMySafe } from '../../components/started/StartedMySafe/StartedMyS
 import { StartedMySafeItem } from '../../components/started/StartedMySafe/StartedMySafeItem';
 import { StartedTitle } from '../../components/started/StartedTitle';
 import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
+import { DepthPage } from '../../components/DepthPage';
 
 export const MySafe = () => {
   return (
-    <div>
+    <DepthPage>
       <StartedTitle subtitle='선택상품'>마이세이프</StartedTitle>
       <StartedDescription>
         <Logo style={{ height: '.8em' }} /> 을 위한 보험 서비스
@@ -45,6 +46,6 @@ export const MySafe = () => {
           <StartedBottomSecondary>건너뛰기</StartedBottomSecondary>
         </NoStyledLink>
       </StartedBottom>
-    </div>
+    </DepthPage>
   );
 };

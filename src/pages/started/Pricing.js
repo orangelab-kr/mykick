@@ -9,12 +9,13 @@ import { StartedPricingList } from '../../components/started/StartedPricing/Star
 import { StartedTitle } from '../../components/started/StartedTitle';
 import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
 import { useState } from 'react';
+import { DepthPage } from '../../components/DepthPage';
 
 export const Pricing = () => {
   const [pricing, setPricing] = useState();
 
   return (
-    <div>
+    <DepthPage>
       <StartedTitle>상품</StartedTitle>
       <StartedDescription>먼저, 상품을 선택해볼까요?</StartedDescription>
       <StartedHashtags>#원하는 #만큼만 #마이킥</StartedHashtags>
@@ -44,6 +45,6 @@ export const Pricing = () => {
           </StartedBottomSecondary>
         </NoStyledLink>
       </StartedBottom>
-    </div>
+    </DepthPage>
   );
 };

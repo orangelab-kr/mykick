@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { DepthPage } from '../../components/DepthPage';
 import { NoStyledLink } from '../../components/NoStyledLink';
 import { StartedBottom } from '../../components/started/StartedBottom/StartedBottom';
 import { StartedBottomPrimary } from '../../components/started/StartedBottom/StartedBottomPrimary';
@@ -18,7 +19,7 @@ export const Estimate = () => {
   useEffect(() => setTimeout(setLoading(false), 2000));
 
   return (
-    <div>
+    <DepthPage>
       <StartedTitle>견적서</StartedTitle>
       <StartedDescription>확인하고 바로 결제하러 갈까요?</StartedDescription>
       <StartedHashtags>#착한 #가격 #마이킥</StartedHashtags>
@@ -77,6 +78,6 @@ export const Estimate = () => {
           <StartedBottomSecondary>나중에 다시하기</StartedBottomSecondary>
         </NoStyledLink>
       </StartedBottom>
-    </div>
+    </DepthPage>
   );
 };
