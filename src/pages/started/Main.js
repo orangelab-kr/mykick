@@ -22,7 +22,6 @@ export const Main = () => {
         <Lottie
           options={{ animationData }}
           style={{ margin: '5em 0 0 0', pointerEvents: 'none' }}
-          height='50vh'
         />
       </AutoCenter>
 

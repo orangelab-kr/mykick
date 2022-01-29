@@ -20,13 +20,13 @@ export const StartedPricing = ({ pricing, onSelect, selectedPricing }) => {
   `;
 
   const Name = styled.div`
-    font-size: 1.4em;
+    font-size: 1.2em;
     font-weight: 800;
   `;
 
   const Price = styled.div`
     margin-top: 0.3em;
-    font-size: 1.2em;
+    font-size: 0.9em;
     font-weight: 400;
     font-style: italic;
   `;

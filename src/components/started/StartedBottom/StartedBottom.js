@@ -7,7 +7,6 @@ export const StartedBottom = ({ children }) => {
     left: 0;
     right: 0;
     width: 100%;
-    height: 10em;
     padding-top: 0.5em;
     background-color: white;
   `;
