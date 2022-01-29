@@ -5,25 +5,42 @@ import { StartedBottomSecondary } from '../../components/started/StartedBottom/S
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedIndicator } from '../../components/started/StartedIndicator';
+import { StartedPricingList } from '../../components/started/StartedPricing/StartedPricingList';
 import { StartedTitle } from '../../components/started/StartedTitle';
+import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
+import { useState } from 'react';
 
 export const Pricing = () => {
+  const [pricing, setPricing] = useState();
+
   return (
     <div>
       <StartedTitle>상품</StartedTitle>
       <StartedDescription>먼저, 상품을 선택해볼까요?</StartedDescription>
       <StartedHashtags>#원하는 #만큼만 #마이킥</StartedHashtags>
+      <StartedPricingList selectedPricing={pricing} setPricing={setPricing} />
       <StartedBottom>
         <StartedIndicator current={0} />
-        <NoStyledLink to='/started/mysafe'>
-          <StartedBottomPrimary description='월 38,000원'>
-            이어서 진행해볼까요?
+        {pricing ? (
+          <NoStyledLink to='/started/mysafe'>
+            <StartedBottomPrimary
+              description={`월 ${pricing.monthlyPrice.toLocaleString()}원`}
+            >
+              이어서 진행해볼까요?
+            </StartedBottomPrimary>
+          </NoStyledLink>
+        ) : (
+          <StartedBottomPrimary
+            description='나에게 맞는 상품을 선택해보세요.'
+            disabled
+          >
+            상품을 먼저 선택해주세요.
           </StartedBottomPrimary>
-        </NoStyledLink>
+        )}
 
         <NoStyledLink to='/auth/login'>
           <StartedBottomSecondary>
-            이미 계정이 있으신가요?
+            이미 <Logo style={{ height: '.8em' }} /> 을 갖고 계신가요?
           </StartedBottomSecondary>
         </NoStyledLink>
       </StartedBottom>
