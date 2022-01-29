@@ -4,7 +4,7 @@ export const StartedEstimateFirstPrice = ({ price }) => {
   const Text = styled.div`
     font-size: 0.8em;
     text-align: right;
-    margin-bottom: 0.4em;
+    margin-top: 2em;
     font-weight: 600;
     word-break: keep-all;
   `;

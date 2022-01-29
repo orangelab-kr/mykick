@@ -56,21 +56,27 @@ export const Estimate = () => {
               optional='선결제'
             />
           </StartedEstimate>
-          <StartedBottom>
-            <StartedEstimateFirstPrice price={3000} />
-            <StartedIndicator current={3} />
-            <NoStyledLink to='/auth/signup'>
-              <StartedBottomPrimary description='월 16,000원 (배송비 무료)'>
-                내 정보 입력하기
-              </StartedBottomPrimary>
-            </NoStyledLink>
-
-            <NoStyledLink to='/'>
-              <StartedBottomSecondary>나중에 다시하기</StartedBottomSecondary>
-            </NoStyledLink>
-          </StartedBottom>
+          <StartedEstimateFirstPrice price={3000} />
         </div>
       )}
+      <StartedBottom>
+        <StartedIndicator current={3} />
+        {!loading ? (
+          <NoStyledLink to='/auth/signup'>
+            <StartedBottomPrimary description='월 16,000원 (배송비 무료)'>
+              내 정보 입력하기
+            </StartedBottomPrimary>
+          </NoStyledLink>
+        ) : (
+          <StartedBottomPrimary description='잠시만 기다려주세요.'>
+            견적을 조회하고 있습니다.
+          </StartedBottomPrimary>
+        )}
+
+        <NoStyledLink to='/'>
+          <StartedBottomSecondary>나중에 다시하기</StartedBottomSecondary>
+        </NoStyledLink>
+      </StartedBottom>
     </div>
   );
 };

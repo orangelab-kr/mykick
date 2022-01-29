@@ -14,8 +14,6 @@ export const StartedEstimate = ({ children, price }) => {
 
   const EstimateGrid = styled(Grid)`
     font-size: 0.8em;
-    height: 45vmin;
-    overflow: scroll;
   `;
 
   const PopoverTip = (
