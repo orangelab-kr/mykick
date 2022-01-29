@@ -1,21 +1,21 @@
 import { Grid } from 'antd-mobile';
 import styled from 'styled-components';
 
+const TitleGrid = styled(Grid)`
+  margin-top: 15px;
+  font-weight: 600;
+  font-size: 0.9em;
+`;
+
+const VatIncludedText = styled.p`
+  display: inline;
+  word-break: keep-all;
+  font-weight: 400;
+  font-size: 10px;
+  color: red;
+`;
+
 export const StartedEstimateTitle = () => {
-  const TitleGrid = styled(Grid)`
-    margin-top: 15px;
-    font-weight: 600;
-    font-size: 0.9em;
-  `;
-
-  const VatIncludedText = styled.p`
-    display: inline;
-    word-break: keep-all;
-    font-weight: 400;
-    font-size: 10px;
-    color: red;
-  `;
-
   return (
     <TitleGrid columns={3}>
       <Grid.Item>항목</Grid.Item>

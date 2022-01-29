@@ -1,17 +1,17 @@
 import { Divider, Grid } from 'antd-mobile';
 import styled from 'styled-components';
 
-export const StartedMySafe = ({ children }) => {
-  const WarningContainer = styled.div`
-    padding: 1em 1em;
-    font-size: 0.8em;
-    word-break: keep-all;
-    font-weight: 600;
-    border-radius: 12px;
-    background-color: #ffffb8;
-    line-height: 1.1;
-  `;
+const WarningContainer = styled.div`
+  padding: 1em 1em;
+  font-size: 0.8em;
+  word-break: keep-all;
+  font-weight: 600;
+  border-radius: 12px;
+  background-color: #ffffb8;
+  line-height: 1.1;
+`;
 
+export const StartedMySafe = ({ children }) => {
   return (
     <div>
       <Divider style={{ margin: '.5em 0' }} />
