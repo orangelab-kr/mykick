@@ -15,14 +15,12 @@ const VatIncludedText = styled.p`
   color: red;
 `;
 
-export const StartedEstimateTitle = () => {
-  return (
-    <TitleGrid columns={3}>
-      <Grid.Item>항목</Grid.Item>
-      <Grid.Item>
-        금액 <VatIncludedText>(부가세포함)</VatIncludedText>
-      </Grid.Item>
-      <Grid.Item>비고</Grid.Item>
-    </TitleGrid>
-  );
-};
+export const StartedEstimateTitle = () => (
+  <TitleGrid columns={3}>
+    <Grid.Item>항목</Grid.Item>
+    <Grid.Item>
+      금액 <VatIncludedText>(부가세포함)</VatIncludedText>
+    </Grid.Item>
+    <Grid.Item>비고</Grid.Item>
+  </TitleGrid>
+);

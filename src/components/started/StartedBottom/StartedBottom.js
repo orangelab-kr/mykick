@@ -14,10 +14,8 @@ const Container = styled.div`
   margin: 0 1.5em 0.8em 1.5em;
 `;
 
-export const StartedBottom = ({ children }) => {
-  return (
-    <Bottom>
-      <Container>{children}</Container>
-    </Bottom>
-  );
-};
+export const StartedBottom = ({ children }) => (
+  <Bottom>
+    <Container>{children}</Container>
+  </Bottom>
+);

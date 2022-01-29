@@ -18,12 +18,10 @@ const VatIncludedText = styled.p`
   color: red;
 `;
 
-export const StartedEstimatePrice = ({ price }) => {
-  return (
-    <Text>
-      이번달 결제하실 금액은
-      <PriceText>{price.toLocaleString()}원</PriceText>
-      <VatIncludedText>(부가세 포함)</VatIncludedText>
-    </Text>
-  );
-};
+export const StartedEstimatePrice = ({ price }) => (
+  <Text>
+    이번달 결제하실 금액은
+    <PriceText>{price.toLocaleString()}원</PriceText>
+    <VatIncludedText>(부가세 포함)</VatIncludedText>
+  </Text>
+);

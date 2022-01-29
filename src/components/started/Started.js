@@ -7,13 +7,11 @@ const Container = styled.div`
   max-height: calc(100vh - 17.6em);
 `;
 
-export const Started = () => {
-  return (
-    <div>
-      <SafeArea position='top' />
-      <Container>
-        <Outlet />
-      </Container>
-    </div>
-  );
-};
+export const Started = () => (
+  <div>
+    <SafeArea position='top' />
+    <Container>
+      <Outlet />
+    </Container>
+  </div>
+);
