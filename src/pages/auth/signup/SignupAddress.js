@@ -15,9 +15,6 @@ export const SignupAddress = () => {
   const detailAddressRef = useRef();
   const [form] = Form.useForm();
   const [visibleSearch, setVisibleSearch] = useState(true);
-  useEffect(() => {
-    console.log('hello World!');
-  }, [detailAddressRef]);
 
   const onComplete = (data) => {
     setVisibleSearch(false);
