@@ -11,7 +11,7 @@ const Bottom = styled.div`
 `;
 
 const Container = styled.div`
-  margin: 0 1.5em 0.8em 1.5em;
+  margin: 0 1.5em 1em 1.5em;
 `;
 
 export const StartedBottom = ({ children }) => (

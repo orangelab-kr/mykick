@@ -1,5 +1,7 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react/cjs/react.development';
 import { DepthPage } from '../../components/DepthPage';
-import { NoStyledLink } from '../../components/NoStyledLink';
 import { StartedBottom } from '../../components/started/StartedBottom/StartedBottom';
 import { StartedBottomPrimary } from '../../components/started/StartedBottom/StartedBottomPrimary';
 import { StartedBottomSecondary } from '../../components/started/StartedBottom/StartedBottomSecondary';
@@ -7,8 +9,44 @@ import { StartedDescription } from '../../components/started/StartedDescription'
 import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedIndicator } from '../../components/started/StartedIndicator';
 import { StartedTitle } from '../../components/started/StartedTitle';
+import { Client } from '../../tools/client';
+import { getStorage } from '../../tools/storage';
 
 export const MyCare = () => {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [addon, setMySafe] = useState();
+  const storage = getStorage('started');
+
+  const getAddon = () => {
+    const isMyCare = (addon) => addon.name.includes('마이케어');
+
+    Client.get('/addons')
+      .finally(() => setLoading(false))
+      .then(({ data }) => data.addons.find(isMyCare))
+      .then(setMySafe);
+  };
+
+  const onClick = (include) => () => {
+    if (include) {
+      const addons = storage.get('addonIds', []);
+      addons.push(addon.addonId);
+      storage.set('addonIds', addons);
+    }
+
+    navigate('/started/estimate');
+  };
+
+  useEffect(getAddon, []);
+  useEffect(() => {
+    if (!addon) return;
+    const addonIds = storage.get('addonIds', []);
+    const addonIdx = addonIds.indexOf(addon.addonId);
+    if (addonIdx <= -1) return;
+    addonIds.splice(addonIdx, 1);
+    storage.set('addonIds', addonIds);
+  }, [addon, storage]);
+
   return (
     <DepthPage>
       <StartedTitle subtitle='추가상품'>마이케어</StartedTitle>
@@ -25,15 +63,23 @@ export const MyCare = () => {
       </p>
       <StartedBottom>
         <StartedIndicator current={2} />
-        <NoStyledLink to='/started/estimate'>
-          <StartedBottomPrimary description='월 16,000원 / 선결제'>
-            마이케어 포함하기
-          </StartedBottomPrimary>
-        </NoStyledLink>
+        <StartedBottomPrimary
+          disabled={loading || !addon}
+          onClick={onClick(true)}
+          description={
+            loading
+              ? '가격 확인하는 중...'
+              : addon
+              ? `월 ${addon.price.toLocaleString()}원`
+              : '마이케어는 판매가 임시 중단되었습니다.'
+          }
+        >
+          마이케어 포함하기
+        </StartedBottomPrimary>
 
-        <NoStyledLink to='/started/estimate'>
-          <StartedBottomSecondary>건너뛰기</StartedBottomSecondary>
-        </NoStyledLink>
+        <StartedBottomSecondary onClick={onClick(false)}>
+          건너뛰기
+        </StartedBottomSecondary>
       </StartedBottom>
     </DepthPage>
   );

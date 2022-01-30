@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import _ from 'lodash';
+import { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { DepthPage } from '../../components/DepthPage';
 import { NoStyledLink } from '../../components/NoStyledLink';
 import { StartedBottom } from '../../components/started/StartedBottom/StartedBottom';
@@ -12,12 +14,35 @@ import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedIndicator } from '../../components/started/StartedIndicator';
 import { StartedLoading } from '../../components/started/StartedLoading';
 import { StartedTitle } from '../../components/started/StartedTitle';
-import { useToggle } from '../../tools/useToggle';
+import { Client } from '../../tools/client';
+import { getStorage } from '../../tools/storage';
 
 export const Estimate = () => {
-  const [loading, setLoading] = useToggle(true);
-  useEffect(() => setTimeout(setLoading(false), 2000));
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [estimate, setEstimate] = useState();
+  const monthlyPrice = useMemo(() => {
+    if (!estimate) return 0;
+    const monthlyItems = _.filter(estimate, (item) => item.type === 'Monthly');
+    const monthlyAmounts = _.map(monthlyItems, (item) => item.amount);
+    return _.sum(monthlyAmounts);
+  }, [estimate]);
+  const firstAddionalPrice = useMemo(() => {
+    if (!estimate || !monthlyPrice) return 0;
+    const thisMonthPrice = _.sum(_.map(estimate, (item) => item.amount));
+    return thisMonthPrice - monthlyPrice;
+  }, [estimate, monthlyPrice]);
 
+  const storage = getStorage('started');
+
+  const getEstimate = () => {
+    console.log(storage.get());
+    Client.post('/rents/estimate', storage.get())
+      .then(({ data }) => setEstimate(data.items))
+      .finally(() => setLoading(false));
+  };
+
+  useEffect(getEstimate, [storage]);
   return (
     <DepthPage>
       <StartedTitle>견적서</StartedTitle>
@@ -28,44 +53,24 @@ export const Estimate = () => {
       </StartedLoading>
       {!loading && (
         <div>
-          <StartedEstimate price={37000}>
-            <StartedEstimateItem description='킥보드 대여' price={37000} />
-            <StartedEstimateItem
-              description='헬멧 구매'
-              price={15000}
-              optional='1회'
-            />
-            <StartedEstimateItem description='마이세이프' price={37000} />
-            <StartedEstimateItem
-              description='마이케어'
-              price={15000}
-              optional='선결제'
-            />
-            <StartedEstimateItem
-              description='마이케어'
-              price={15000}
-              optional='선결제'
-            />
-            <StartedEstimateItem
-              description='마이케어'
-              price={15000}
-              optional='선결제'
-            />
-            <StartedEstimateItem
-              description='마이케어'
-              price={15000}
-              optional='선결제'
-            />
+          <StartedEstimate price={monthlyPrice}>
+            {estimate.map((item) => (
+              <StartedEstimateItem
+                description={item.name}
+                price={item.amount}
+                optional={item.type === 'Onetime' ? '1회' : ''}
+              />
+            ))}
           </StartedEstimate>
-          <StartedEstimateFirstPrice price={3000} />
+          <StartedEstimateFirstPrice price={firstAddionalPrice} />
         </div>
       )}
       <StartedBottom>
         <StartedIndicator current={3} />
         {!loading ? (
-          <NoStyledLink to='/auth/signup'>
+          <NoStyledLink to='/auth/signup/info'>
             <StartedBottomPrimary description='월 16,000원 (배송비 무료)'>
-              내 정보 입력하기
+              진행하기
             </StartedBottomPrimary>
           </NoStyledLink>
         ) : (

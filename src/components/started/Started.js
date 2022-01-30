@@ -3,9 +3,8 @@ import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  margin: 20px 25px 10.5em 25px;
-  max-height: calc(100vh - 17.6em);
-  overflow: scroll;
+  margin: 20px 25px 10.8em 25px;
+  height: -webkit-fill-available;
 `;
 
 export const Started = () => (

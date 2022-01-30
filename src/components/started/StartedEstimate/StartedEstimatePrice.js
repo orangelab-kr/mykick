@@ -20,7 +20,7 @@ const VatIncludedText = styled.p`
 
 export const StartedEstimatePrice = ({ price }) => (
   <Text>
-    이번달 결제하실 금액은
+    매달 결제하실 금액은
     <PriceText>{price.toLocaleString()}원</PriceText>
     <VatIncludedText>(부가세 포함)</VatIncludedText>
   </Text>

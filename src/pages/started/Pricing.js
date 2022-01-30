@@ -10,9 +10,16 @@ import { StartedTitle } from '../../components/started/StartedTitle';
 import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
 import { useState } from 'react';
 import { DepthPage } from '../../components/DepthPage';
+import { useEffect } from 'react';
+import { getStorage } from '../../tools/storage';
 
 export const Pricing = () => {
   const [pricing, setPricing] = useState();
+  const storage = getStorage('started');
+
+  useEffect(() => {
+    storage.set('pricingId', pricing && pricing.pricingId);
+  }, [pricing, storage]);
 
   return (
     <DepthPage>

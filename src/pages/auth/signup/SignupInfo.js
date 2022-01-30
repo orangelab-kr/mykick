@@ -68,7 +68,7 @@ export const SignupInfo = () => {
           </StartedBottomPrimary>
         </NoStyledLink>
 
-        <GobackLink to={-2}>
+        <GobackLink>
           <StartedBottomSecondary>뒤로 가기</StartedBottomSecondary>
         </GobackLink>
       </StartedBottom>
