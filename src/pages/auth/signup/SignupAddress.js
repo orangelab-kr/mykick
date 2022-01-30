@@ -20,7 +20,6 @@ export const SignupAddress = () => {
     setVisibleSearch(false);
     const { bname, buildingName, address, addressType } = data;
     const addresses = { address };
-    console.log(data);
 
     if (addressType === 'R') {
       let extra = '';

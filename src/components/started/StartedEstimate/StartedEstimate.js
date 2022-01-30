@@ -6,21 +6,22 @@ import { useToggle } from '../../../tools/useToggle';
 import { StartedEstimatePrice } from './StartedEstimatePrice';
 import { StartedEstimateTitle } from './StartedEstimateTitle';
 
+const EstimateDashedDivider = styled(Divider)`
+  border-style: dashed;
+`;
+
+const EstimateGrid = styled(Grid)`
+  font-size: 0.8em;
+`;
+
+const PopoverTip = (
+  <p style={{ fontSize: '0.8em' }}>
+    <FingerdownOutline /> 아래로 스크롤할 수 있습니다.
+  </p>
+);
+
 export const StartedEstimate = ({ children, price }) => {
   const [visibleTip, setVisibleTip] = useToggle(true);
-  const EstimateDashedDivider = styled(Divider)`
-    border-style: dashed;
-  `;
-
-  const EstimateGrid = styled(Grid)`
-    font-size: 0.8em;
-  `;
-
-  const PopoverTip = (
-    <p style={{ fontSize: '0.8em' }}>
-      <FingerdownOutline /> 아래로 스크롤할 수 있습니다.
-    </p>
-  );
 
   return (
     <div>

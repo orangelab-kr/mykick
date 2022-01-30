@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react/cjs/react.development';
 import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
 import { DepthPage } from '../../components/DepthPage';
 import { StartedBottom } from '../../components/started/StartedBottom/StartedBottom';

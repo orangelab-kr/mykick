@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react/cjs/react.development';
 import { DepthPage } from '../../components/DepthPage';
 import { StartedBottom } from '../../components/started/StartedBottom/StartedBottom';
 import { StartedBottomPrimary } from '../../components/started/StartedBottom/StartedBottomPrimary';

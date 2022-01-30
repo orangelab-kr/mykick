@@ -36,7 +36,6 @@ export const Estimate = () => {
   const storage = getStorage('started');
 
   const getEstimate = () => {
-    console.log(storage.get());
     Client.post('/rents/estimate', storage.get())
       .then(({ data }) => setEstimate(data.items))
       .finally(() => setLoading(false));
@@ -58,7 +57,7 @@ export const Estimate = () => {
               <StartedEstimateItem
                 description={item.name}
                 price={item.amount}
-                optional={item.type === 'Onetime' ? '1회' : ''}
+                optional={item.type === 'Onetime' ? '첫 달만' : ''}
               />
             ))}
           </StartedEstimate>
