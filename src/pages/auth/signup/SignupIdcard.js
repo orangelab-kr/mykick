@@ -12,6 +12,9 @@ import { StartedDescription } from '../../../components/started/StartedDescripti
 import { StartedHashtags } from '../../../components/started/StartedHashtags';
 import { StartedIndicator } from '../../../components/started/StartedIndicator';
 import { StartedTitle } from '../../../components/started/StartedTitle';
+import { useStorage } from '../../../tools/storage';
+import crypto from 'crypto-js';
+import { useNavigate } from 'react-router-dom';
 
 const Preview = styled.div`
   width: 94%;
@@ -62,11 +65,17 @@ const SafetyDescription = styled.div`
   margin-top: 1em;
 `;
 
+const generateKey = () =>
+  crypto.lib.WordArray.random(16).toString(crypto.enc.Hex);
+
 export const SignupIdcard = () => {
+  const navigate = useNavigate();
   const inputRef = useRef();
   const [ready, setReady] = useState(false);
   const [previewImage, setPreviewImage] = useState();
   const [image, setImage] = useState();
+  const [key] = useState(generateKey());
+  const storage = useStorage('signup');
 
   const onChangeImage = async (event) => {
     if (event.target.files.length <= 0) return;
@@ -75,19 +84,27 @@ export const SignupIdcard = () => {
 
     const [image] = event.target.files;
     setPreviewImage(URL.createObjectURL(image));
-
-    const headers = {
-      Authorization: 'Bearer mykick',
-      'Content-Type': image.type,
+    const options = {
+      params: { key },
+      headers: {
+        Authorization: 'Bearer mykick',
+        'Content-Type': image.type,
+      },
     };
 
-    const { data } = await axios.post(imageURL, image, { headers });
-    setImage(data.url);
+    const { data } = await axios.post(imageURL, image, options);
+    setImage(`${data.url}?k=${key}`);
   };
 
   const onImageLoad = async (event) => {
     URL.revokeObjectURL(previewImage);
     setReady(true);
+  };
+
+  const onClick = () => {
+    if (!image) return;
+    storage.set('idcard', image);
+    navigate('/auth/signup/complete');
   };
 
   return (
@@ -139,12 +156,13 @@ export const SignupIdcard = () => {
       <StartedBottom>
         <StartedIndicator current={2} />
         <StartedBottomPrimary
+          onClick={onClick}
+          disabled={!ready}
           description={
             ready
               ? '마이킥을 본격적으로 이용해볼까요?'
               : '신분증을 업로드해주세요'
           }
-          disabled={!ready}
         >
           가입 완료하기
         </StartedBottomPrimary>

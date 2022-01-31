@@ -6,6 +6,7 @@
     "antd-mobile": "^5.0.0-rc.21",
     "antd-mobile-icons": "^0.2.2",
     "axios": "^0.25.0",
+    "crypto-js": "^4.1.1",
     "dayjs": "^1.10.7",
     "query-string": "^7.1.0",
     "react": "^17.0.2",
