@@ -93,6 +93,7 @@ export const SignupAddress = () => {
     if (detailAddress) finallyAddress += `, ${detailAddress}`;
     if (extraAddress) finallyAddress += ` (${extraAddress})`;
     storage.set('address', finallyAddress);
+    window.scrollTo(0, 0);
     navigate('/auth/signup/idcard');
   };
 

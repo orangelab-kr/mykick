@@ -8,6 +8,7 @@ import { Reset } from 'styled-reset';
 import { Started } from './components/started/Started';
 import { Login } from './pages/auth/Login';
 import { SignupAddress } from './pages/auth/signup/SignupAddress';
+import { SignupIdcard } from './pages/auth/signup/SignupIdcard';
 import { SignupInfo } from './pages/auth/signup/SignupInfo';
 import { Estimate } from './pages/started/Estimate';
 import { Main } from './pages/started/Main';
@@ -19,6 +20,11 @@ export const baseURL =
   window.location.host === 'my.hikick.kr'
     ? 'https://my-api.hikick.kr/v1'
     : 'https://my-api.staging.hikick.kr/v1';
+
+export const imageURL =
+  window.location.host === 'my.hikick.kr'
+    ? 'https://coreservice.hikick.kr/v1/images'
+    : 'https://coreservice.staging.hikick.kr/v1/images';
 
 const GlobalStyle = styled.div`
   * {
@@ -50,6 +56,7 @@ ReactDOM.render(
                 <Route index element={<Navigate to='/auth/signup/info' />} />
                 <Route path='info' element={<SignupInfo />} />
                 <Route path='address' element={<SignupAddress />} />
+                <Route path='idcard' element={<SignupIdcard />} />
               </Route>
             </Route>
           </Route>

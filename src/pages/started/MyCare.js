@@ -33,6 +33,7 @@ export const MyCare = () => {
       storage.set('addonIds', addons);
     }
 
+    window.scrollTo(0, 0);
     navigate('/started/estimate');
   };
 
