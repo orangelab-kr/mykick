@@ -11,11 +11,11 @@ import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
 import { useState } from 'react';
 import { DepthPage } from '../../components/DepthPage';
 import { useEffect } from 'react';
-import { getStorage } from '../../tools/storage';
+import { useStorage } from '../../tools/storage';
 
 export const Pricing = () => {
   const [pricing, setPricing] = useState();
-  const storage = getStorage('started');
+  const storage = useStorage('started');
 
   useEffect(() => {
     storage.set('pricingId', pricing && pricing.pricingId);

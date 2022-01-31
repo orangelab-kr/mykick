@@ -12,7 +12,7 @@ import { StartedDescription } from '../../../components/started/StartedDescripti
 import { StartedHashtags } from '../../../components/started/StartedHashtags';
 import { StartedIndicator } from '../../../components/started/StartedIndicator';
 import { StartedTitle } from '../../../components/started/StartedTitle';
-import { getStorage } from '../../../tools/storage';
+import { useStorage } from '../../../tools/storage';
 
 const BlankWarningTitle = styled.div`
   font-size: 18px;
@@ -34,7 +34,7 @@ export const SignupAddress = () => {
   const [form] = Form.useForm();
   const [visibleSearch, setVisibleSearch] = useState(true);
   const [ready, setReady] = useState(false);
-  const storage = getStorage('signup');
+  const storage = useStorage('signup');
 
   const onComplete = (data) => {
     setVisibleSearch(false);

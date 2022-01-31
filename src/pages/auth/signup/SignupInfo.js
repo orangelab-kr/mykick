@@ -13,7 +13,7 @@ import { StartedHashtags } from '../../../components/started/StartedHashtags';
 import { StartedIndicator } from '../../../components/started/StartedIndicator';
 import { StartedTitle } from '../../../components/started/StartedTitle';
 import { Client } from '../../../tools/client';
-import { getStorage } from '../../../tools/storage';
+import { useStorage } from '../../../tools/storage';
 
 const VerifiedText = styled.div`
   color: green;
@@ -27,7 +27,7 @@ export const SignupInfo = () => {
   const [requested, setRequested] = useState(false);
   const [verified, setVerified] = useState(false);
   const [ready, setReady] = useState(false);
-  const storage = getStorage('signup');
+  const storage = useStorage('signup');
 
   const onPhoneNoChange = async (phoneNo) => {
     phoneNo = phoneNo
@@ -121,7 +121,9 @@ export const SignupInfo = () => {
             disabled={!requested || verified}
           />
         </Form.Item>
-        <Form.Item name='phoneId' hidden />
+        <Form.Item name='phoneId' hidden>
+          <Input type='hidden' />
+        </Form.Item>
       </Form>
       {verified && <VerifiedText>인증이 완료되었습니다.</VerifiedText>}
       <StartedBottom>

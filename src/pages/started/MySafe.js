@@ -12,13 +12,13 @@ import { StartedMySafe } from '../../components/started/StartedMySafe/StartedMyS
 import { StartedMySafeItem } from '../../components/started/StartedMySafe/StartedMySafeItem';
 import { StartedTitle } from '../../components/started/StartedTitle';
 import { Client } from '../../tools/client';
-import { getStorage } from '../../tools/storage';
+import { useStorage } from '../../tools/storage';
 
 export const MySafe = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [addon, setMySafe] = useState();
-  const storage = getStorage('started');
+  const storage = useStorage('started');
 
   const getAddon = () => {
     const isMySafe = (addon) => addon.name.includes('마이세이프');

@@ -9,13 +9,13 @@ import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedIndicator } from '../../components/started/StartedIndicator';
 import { StartedTitle } from '../../components/started/StartedTitle';
 import { Client } from '../../tools/client';
-import { getStorage } from '../../tools/storage';
+import { useStorage } from '../../tools/storage';
 
 export const MyCare = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [addon, setMySafe] = useState();
-  const storage = getStorage('started');
+  const storage = useStorage('started');
 
   const getAddon = () => {
     const isMyCare = (addon) => addon.name.includes('마이케어');

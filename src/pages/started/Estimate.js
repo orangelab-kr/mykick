@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { DepthPage } from '../../components/DepthPage';
 import { NoStyledLink } from '../../components/NoStyledLink';
 import { StartedBottom } from '../../components/started/StartedBottom/StartedBottom';
@@ -15,10 +14,9 @@ import { StartedIndicator } from '../../components/started/StartedIndicator';
 import { StartedLoading } from '../../components/started/StartedLoading';
 import { StartedTitle } from '../../components/started/StartedTitle';
 import { Client } from '../../tools/client';
-import { getStorage } from '../../tools/storage';
+import { useStorage } from '../../tools/storage';
 
 export const Estimate = () => {
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [estimate, setEstimate] = useState();
   const monthlyPrice = useMemo(() => {
@@ -33,7 +31,7 @@ export const Estimate = () => {
     return thisMonthPrice - monthlyPrice;
   }, [estimate, monthlyPrice]);
 
-  const storage = getStorage('started');
+  const storage = useStorage('started');
 
   const getEstimate = () => {
     Client.post('/rents/estimate', storage.get())
@@ -55,6 +53,7 @@ export const Estimate = () => {
           <StartedEstimate price={monthlyPrice}>
             {estimate.map((item) => (
               <StartedEstimateItem
+                key={item.name}
                 description={item.name}
                 price={item.amount}
                 optional={item.type === 'Onetime' ? '첫 달만' : ''}
@@ -68,7 +67,9 @@ export const Estimate = () => {
         <StartedIndicator current={3} />
         {!loading ? (
           <NoStyledLink to='/auth/signup/info'>
-            <StartedBottomPrimary description='월 16,000원 (배송비 무료)'>
+            <StartedBottomPrimary
+              description={`월 ${monthlyPrice.toLocaleString()}원 (배송비 무료)`}
+            >
               진행하기
             </StartedBottomPrimary>
           </NoStyledLink>
