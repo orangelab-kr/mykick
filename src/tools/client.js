@@ -8,6 +8,7 @@ export class ToastError extends Error {
 
   constructor(content) {
     super();
+    this.message = content;
     Toast.show({ icon: 'fail', content });
   }
 }
@@ -43,7 +44,7 @@ function getInterceptorResponseError(err) {
 }
 
 export function getAccessKey() {
-  const sessionId = localStorage.getItem('mykick-session-id');
+  const sessionId = localStorage.getItem('mykick-token');
   if (!sessionId) return;
   return `Bearer ${sessionId}`;
 }

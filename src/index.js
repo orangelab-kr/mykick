@@ -8,6 +8,7 @@ import { Reset } from 'styled-reset';
 import { Started } from './components/started/Started';
 import { Login } from './pages/auth/Login';
 import { SignupAddress } from './pages/auth/signup/SignupAddress';
+import { SignupComplete } from './pages/auth/signup/SignupComplete';
 import { SignupIdcard } from './pages/auth/signup/SignupIdcard';
 import { SignupInfo } from './pages/auth/signup/SignupInfo';
 import { Estimate } from './pages/started/Estimate';
@@ -57,6 +58,7 @@ ReactDOM.render(
                 <Route path='info' element={<SignupInfo />} />
                 <Route path='address' element={<SignupAddress />} />
                 <Route path='idcard' element={<SignupIdcard />} />
+                <Route path='complete' element={<SignupComplete />} />
               </Route>
             </Route>
           </Route>
