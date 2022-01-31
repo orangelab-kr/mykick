@@ -26,35 +26,67 @@ const Preview = styled.div`
   align-items: center;
 `;
 
-const PreviewImage = styled(Image)`
+const CardImage = styled(Image)`
+  display: ${({ $hidden }) => ($hidden ? 'none' : 'block')};
   position: absolute;
   height: 90%;
   width: 94%;
   border-radius: 10px;
-  filter: blur(${({ loading }) => (loading ? 4 : 0)}px);
+`;
+
+const PreviewImage = styled(CardImage)`
+  filter: blur(4px);
+`;
+
+const SafetyText = styled.div`
+  margin: .5em 0;
+  padding: 1em 1em 1em 2.5em;
+  border-radius: 8px;
+  background-color #eee;
+  line-height: 1.2;
+`;
+
+const SafetyTitle = styled.div`
+  font-size: 1.2em;
+  margin-left: -1.3em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+`;
+
+const SafetyBold = styled.p`
+  display: inline;
+  font-weight: 800;
+`;
+
+const SafetyDescription = styled.div`
+  margin-top: 1em;
 `;
 
 export const SignupIdcard = () => {
   const inputRef = useRef();
-  const [loading, setLoading] = useState(false);
   const [ready, setReady] = useState(false);
+  const [previewImage, setPreviewImage] = useState();
   const [image, setImage] = useState();
 
   const onChangeImage = async (event) => {
     if (event.target.files.length <= 0) return;
-    setLoading(true);
+    setReady(false);
+    setImage();
+
     const [image] = event.target.files;
+    setPreviewImage(URL.createObjectURL(image));
+
     const headers = {
       Authorization: 'Bearer mykick',
       'Content-Type': image.type,
     };
 
-    setImage(URL.createObjectURL(image));
-    const { data } = await axios
-      .post(imageURL, image, { headers })
-      .finally(() => setLoading(false));
+    const { data } = await axios.post(imageURL, image, { headers });
     setImage(data.url);
-    setLoading(false);
+  };
+
+  const onImageLoad = async (event) => {
+    URL.revokeObjectURL(previewImage);
     setReady(true);
   };
 
@@ -67,8 +99,14 @@ export const SignupIdcard = () => {
       <StartedHashtags>#개인정보도 #안전하게 #마이킥</StartedHashtags>
 
       <Preview>
-        <PreviewImage src={image} loading={loading} fit='cover' />
-        {loading && <SpinLoading />}
+        {!ready && <PreviewImage src={previewImage} fit='cover' />}
+        <CardImage
+          src={image}
+          $hidden={!ready}
+          onLoad={onImageLoad}
+          fit='cover'
+        />
+        {!ready && previewImage && <SpinLoading />}
       </Preview>
 
       <input
@@ -82,6 +120,21 @@ export const SignupIdcard = () => {
       <Button block color='success' onClick={() => inputRef.current.click()}>
         ⚡️ {ready ? '다시 업로드' : '업로드하기'}
       </Button>
+      <SafetyText>
+        <SafetyTitle>✅ 마이킥이니까, 안심하세요.</SafetyTitle>
+        <SafetyDescription>
+          <SafetyBold>마이킥</SafetyBold>은 고객님의 개인정보를 최우선으로
+          관리하고자 노력하고 있습니다.
+        </SafetyDescription>
+        <SafetyDescription>
+          <SafetyBold>신분증 사진</SafetyBold>은 HTTPS를 통해 안전하게 처리되며,
+          <SafetyBold>암호화</SafetyBold>되어 저장됩니다.
+        </SafetyDescription>
+        <SafetyDescription>
+          고객님의 개인정보는 <SafetyBold>개인정보취급방침</SafetyBold>을 통해
+          자세한 처리방침을 확인하실 수 있습니다.
+        </SafetyDescription>
+      </SafetyText>
 
       <StartedBottom>
         <StartedIndicator current={2} />
