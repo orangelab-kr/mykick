@@ -3,7 +3,11 @@ import { Client } from '../../../tools/client';
 import { StartedLoading } from '../StartedLoading';
 import { StartedPricing } from './StartedPricing';
 
-export const StartedPricingList = ({ selectedPricing, setPricing }) => {
+export const StartedPricingList = ({
+  selectedPricing,
+  setPricing,
+  initialPricingId,
+}) => {
   const [loading, setLoading] = useState(true);
   const [pricings, setPricings] = useState([]);
 
@@ -13,6 +17,12 @@ export const StartedPricingList = ({ selectedPricing, setPricing }) => {
       .finally(() => setLoading(false));
   };
 
+  const onInitialPricing = () => {
+    const pricing = pricings.find((p) => p.pricingId === initialPricingId);
+    if (pricing) setPricing(pricing);
+  };
+
+  useEffect(onInitialPricing, [initialPricingId, pricings, setPricing]);
   useEffect(getPricings, []);
   if (loading) {
     return (

@@ -1,8 +1,10 @@
 import { Button, Dialog, Form, Input } from 'antd-mobile';
-import { useState } from 'react';
+import _ from 'lodash';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import { DepthPage } from '../../../components/DepthPage';
 import { GobackLink } from '../../../components/GobackLink';
-import { NoStyledLink } from '../../../components/NoStyledLink';
 import { StartedBottom } from '../../../components/started/StartedBottom/StartedBottom';
 import { StartedBottomPrimary } from '../../../components/started/StartedBottom/StartedBottomPrimary';
 import { StartedBottomSecondary } from '../../../components/started/StartedBottom/StartedBottomSecondary';
@@ -11,9 +13,6 @@ import { StartedHashtags } from '../../../components/started/StartedHashtags';
 import { StartedIndicator } from '../../../components/started/StartedIndicator';
 import { StartedTitle } from '../../../components/started/StartedTitle';
 import { Client } from '../../../tools/client';
-import _ from 'lodash';
-import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import { getStorage } from '../../../tools/storage';
 
 const VerifiedText = styled.div`
@@ -83,12 +82,18 @@ export const SignupInfo = () => {
     </Button>
   );
 
+  const onInitialInfo = () => {
+    const fields = _.pick(storage.get(), 'name');
+    if (fields) form.setFieldsValue(fields);
+  };
+
   const onClick = () => {
     const value = form.getFieldsValue();
     storage.setAll(_.pick(value, 'name', 'phoneId'));
     navigate('/auth/signup/address');
   };
 
+  useEffect(onInitialInfo, [form, storage]);
   return (
     <DepthPage>
       <StartedTitle subtitle='기본정보'>가입하기</StartedTitle>

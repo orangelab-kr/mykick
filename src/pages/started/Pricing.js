@@ -26,7 +26,11 @@ export const Pricing = () => {
       <StartedTitle>상품</StartedTitle>
       <StartedDescription>먼저, 상품을 선택해볼까요?</StartedDescription>
       <StartedHashtags>#원하는 #만큼만 #마이킥</StartedHashtags>
-      <StartedPricingList selectedPricing={pricing} setPricing={setPricing} />
+      <StartedPricingList
+        selectedPricing={pricing}
+        setPricing={setPricing}
+        initialPricingId={storage.get('pricingId')}
+      />
       <StartedBottom>
         <StartedIndicator current={0} />
         {pricing ? (

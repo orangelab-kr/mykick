@@ -1,8 +1,7 @@
 import { Dialog, Form, Input } from 'antd-mobile';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react/cjs/react.development';
 import styled from 'styled-components';
 import { DepthPage } from '../../../components/DepthPage';
 import { GobackLink } from '../../../components/GobackLink';
