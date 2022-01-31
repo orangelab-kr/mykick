@@ -7,7 +7,7 @@ import { StartedBottomSecondary } from '../../components/started/StartedBottom/S
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedTitle } from '../../components/started/StartedTitle';
-import * as animationData from '../../assets/lotties/lf30_tjdy9hfq.json';
+import * as animationData from '../../assets/lotties/64970-electric-scooter-baloon.json';
 import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
 
 export const Main = () => {
