@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { DepthPage } from '../../components/DepthPage';
 import { NoStyledLink } from '../../components/NoStyledLink';
 import { StartedBottom } from '../../components/started/StartedBottom/StartedBottom';
@@ -15,8 +16,11 @@ import { StartedLoading } from '../../components/started/StartedLoading';
 import { StartedTitle } from '../../components/started/StartedTitle';
 import { Client } from '../../tools/client';
 import { useStorage } from '../../tools/storage';
+import { useUser } from '../../tools/useUser';
 
 export const Estimate = () => {
+  const user = useUser({ clearCache: true });
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [estimate, setEstimate] = useState();
   const monthlyPrice = useMemo(() => {
@@ -39,6 +43,14 @@ export const Estimate = () => {
       .finally(() => setLoading(false));
   };
 
+  const onClick = () => {
+    if (user === null) {
+      localStorage.setItem('mykick-redirect', '/started/estimate');
+      navigate('/auth/signup/info');
+      return;
+    }
+  };
+
   useEffect(getEstimate, [storage]);
   return (
     <DepthPage>
@@ -59,20 +71,25 @@ export const Estimate = () => {
                 optional={item.type === 'Onetime' ? '첫 달만' : ''}
               />
             ))}
+            <StartedEstimateItem
+              description={'배송비'}
+              price={16000}
+              discountPrice={0}
+              optional={'특별 면제 이벤트 중!'}
+            />
           </StartedEstimate>
           <StartedEstimateFirstPrice price={firstAddionalPrice} />
         </div>
       )}
       <StartedBottom>
         <StartedIndicator current={3} />
-        {!loading ? (
-          <NoStyledLink to='/auth/signup/info'>
-            <StartedBottomPrimary
-              description={`월 ${monthlyPrice.toLocaleString()}원 (배송비 무료)`}
-            >
-              진행하기
-            </StartedBottomPrimary>
-          </NoStyledLink>
+        {!loading && user !== undefined ? (
+          <StartedBottomPrimary
+            description={`월 ${monthlyPrice.toLocaleString()}원 (배송비 무료)`}
+            onClick={onClick}
+          >
+            진행하기
+          </StartedBottomPrimary>
         ) : (
           <StartedBottomPrimary description='잠시만 기다려주세요.'>
             견적을 조회하고 있습니다.

@@ -7,14 +7,34 @@ const EstimateItem = styled(Grid.Item)`
   padding-bottom: 16px;
 `;
 
-const EstimateItemPrice = styled(EstimateItem)`
+const EstimateItemPrice = styled.div`
+  disply: inline;
   font-style: italic;
+  line-height: 1.4;
+  font-weight: ${({ $emphasis }) => ($emphasis ? '600' : '400')};
+  font-size: ${({ $emphasis }) => ($emphasis ? '15.8' : '12.8')}px;
+  text-decoration: ${({ $discount }) =>
+    isNaN($discount) ? 'none' : 'line-through'};
 `;
 
-export const StartedEstimateItem = ({ description, price, optional }) => (
+export const StartedEstimateItem = ({
+  description,
+  price,
+  discountPrice,
+  optional,
+}) => (
   <>
     <EstimateItem>{description}</EstimateItem>
-    <EstimateItemPrice>{price.toLocaleString()}원</EstimateItemPrice>
+    <EstimateItem>
+      <EstimateItemPrice $discount={discountPrice}>
+        {price.toLocaleString()}원
+      </EstimateItemPrice>
+      {!isNaN(discountPrice) && (
+        <EstimateItemPrice $emphasis>
+          {discountPrice.toLocaleString()}원
+        </EstimateItemPrice>
+      )}
+    </EstimateItem>
     <EstimateItem>{optional}</EstimateItem>
   </>
 );

@@ -7,6 +7,6 @@ const Container = styled.div`
 `;
 
 export const GobackLink = ({ children, to }) => {
-  const navigator = useNavigate();
-  return <Container onClick={() => navigator(to || -1)}>{children}</Container>;
+  const navigate = useNavigate();
+  return <Container onClick={() => navigate(to || -1)}>{children}</Container>;
 };
