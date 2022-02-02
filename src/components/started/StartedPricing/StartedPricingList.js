@@ -18,6 +18,7 @@ export const StartedPricingList = ({
   };
 
   const onInitialPricing = () => {
+    if (selectedPricing) return;
     const pricing = pricings.find((p) => p.pricingId === initialPricingId);
     if (pricing) setPricing(pricing);
   };

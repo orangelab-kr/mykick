@@ -41,7 +41,7 @@ export const SignupComplete = () => {
     try {
       const form = storage.get();
       const options = { alert: false };
-      const { data } = await Client.post('/auth/signup', options, form);
+      const { data } = await Client.post('/auth/signup', form, options);
       localStorage.setItem('mykick-token', data.token);
       storage.setAll({});
       setUser(data.user);
