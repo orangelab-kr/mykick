@@ -40,7 +40,8 @@ export const SignupComplete = () => {
   const onSignup = useCallback(async () => {
     try {
       const form = storage.get();
-      const { data } = await Client.post('/auth/signup', form);
+      const options = { alert: false };
+      const { data } = await Client.post('/auth/signup', options, form);
       localStorage.setItem('mykick-token', data.token);
       storage.setAll({});
       setUser(data.user);
@@ -64,6 +65,12 @@ export const SignupComplete = () => {
     }
   }, [navigate, storage]);
 
+  const onClick = () => {
+    const redirect = localStorage.getItem('mykick-redirect');
+    localStorage.removeItem('mykick-redirect');
+    navigate(redirect);
+  };
+
   useEffect(onSignup, [onSignup]);
   return (
     <DepthPage>
@@ -83,6 +90,7 @@ export const SignupComplete = () => {
         <StartedBottomPrimary
           description={loading ? '잠시만 기다려주세요.' : '이어서 진행하기'}
           disabled={loading}
+          onClick={onClick}
         >
           반가워요!
         </StartedBottomPrimary>

@@ -87,9 +87,46 @@ export const SignupInfo = () => {
     if (fields) form.setFieldsValue(fields);
   };
 
-  const onClick = () => {
+  const onLogin = async (phoneId) => {
+    try {
+      const form = { phoneId };
+      const options = { alert: false };
+      const { data } = await Client.post('/auth/signin', form, options);
+      return data;
+    } catch (err) {
+      return null;
+    }
+  };
+
+  const onClick = async () => {
     const value = form.getFieldsValue();
-    storage.setAll(_.pick(value, 'name', 'phoneId'));
+    const { name, phoneId } = _.pick(value, 'name', 'phoneId');
+    const tryLogin = await onLogin(phoneId);
+    if (tryLogin) {
+      const { user, token } = tryLogin;
+      const confirm = await Dialog.confirm({
+        content: `${user.name}님의 이름으로 이미 동일한 전화번호가 가입되어 있습니다. 해당 계정으로 로그인하시겠습니까?`,
+        confirmText: '네, 로그인합니다',
+        cancelText: '아니요',
+      });
+
+      if (confirm) {
+        const redirect = localStorage.getItem('mykick-redirect');
+        localStorage.setItem('mykick-token', token);
+        localStorage.removeItem('mykick-redirect');
+        navigate(redirect);
+        return;
+      }
+
+      setRequested(false);
+      setVerified(false);
+      setReady(false);
+
+      form.resetFields(['phoneId', 'phoneNo', 'verifyCode']);
+      return;
+    }
+
+    storage.setAll({ name, phoneId });
     navigate('/auth/signup/address');
   };
 
