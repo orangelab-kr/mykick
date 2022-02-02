@@ -26,6 +26,7 @@ export const Estimate = () => {
   const cards = useCards({ clearCache: true });
   const [loading, setLoading] = useState(true);
   const [estimate, setEstimate] = useState();
+  const storage = useStorage('started');
   const monthlyPrice = useMemo(() => {
     if (!estimate) return 0;
     const monthlyItems = _.filter(estimate, (item) => item.type === 'Monthly');
@@ -38,15 +39,15 @@ export const Estimate = () => {
     return thisMonthPrice - monthlyPrice;
   }, [estimate, monthlyPrice]);
 
-  const storage = useStorage('started');
-
   const getEstimate = () => {
-    Client.post('/rents/estimate', storage.get())
+    const forms = { addonIds: [], ...storage.get() };
+    if (!forms.pricingId) return navigate('/started/pricing');
+    Client.post('/rents/estimate', forms)
       .then(({ data }) => setEstimate(data.items))
       .finally(() => setLoading(false));
   };
 
-  const onClick = () => {
+  const onClick = async () => {
     if (user !== undefined && user === null) {
       localStorage.setItem('mykick-redirect', '/started/estimate');
       navigate('/auth/signup/info');
@@ -58,6 +59,8 @@ export const Estimate = () => {
       navigate('/auth/signup/payments');
       return;
     }
+
+    navigate('/started/complete');
   };
 
   const getNextButtonText = () => {
@@ -66,10 +69,10 @@ export const Estimate = () => {
       return <PayWithToss>토스 연결하기</PayWithToss>;
     }
 
-    return '진행하기';
+    return '결제하기';
   };
 
-  useEffect(getEstimate, [storage]);
+  useEffect(getEstimate, [navigate, storage]);
   return (
     <DepthPage>
       <StartedTitle>견적서</StartedTitle>

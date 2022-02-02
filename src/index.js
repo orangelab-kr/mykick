@@ -10,6 +10,7 @@ import { Started } from './components/started/Started';
 import { Login } from './pages/auth/Login';
 import { SignupAddress } from './pages/auth/signup/SignupAddress';
 import { SignupComplete } from './pages/auth/signup/SignupComplete';
+import { StartedComplete } from './pages/started/Complete';
 import { SignupIdcard } from './pages/auth/signup/SignupIdcard';
 import { SignupInfo } from './pages/auth/signup/SignupInfo';
 import { SignupPayments } from './pages/auth/signup/SignupPayments';
@@ -52,6 +53,7 @@ ReactDOM.render(
                 <Route path='mysafe' element={<MySafe />} />
                 <Route path='mycare' element={<MyCare />} />
                 <Route path='estimate' element={<Estimate />} />
+                <Route path='complete' element={<StartedComplete />} />
               </Route>
               <Route path='auth' element={<Started />}>
                 <Route index element={<Navigate to='/auth/login' />} />
