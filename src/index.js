@@ -5,12 +5,14 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import { Reset } from 'styled-reset';
+import { QueryParamProvider } from 'use-query-params';
 import { Started } from './components/started/Started';
 import { Login } from './pages/auth/Login';
 import { SignupAddress } from './pages/auth/signup/SignupAddress';
 import { SignupComplete } from './pages/auth/signup/SignupComplete';
 import { SignupIdcard } from './pages/auth/signup/SignupIdcard';
 import { SignupInfo } from './pages/auth/signup/SignupInfo';
+import { SignupPayments } from './pages/auth/signup/SignupPayments';
 import { Estimate } from './pages/started/Estimate';
 import { Main } from './pages/started/Main';
 import { MyCare } from './pages/started/MyCare';
@@ -38,33 +40,36 @@ const GlobalStyle = styled.div`
 ReactDOM.render(
   <React.StrictMode>
     <Reset />
-    <GlobalStyle>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/'>
-            <Route index element={<Navigate to='/started' />} />
-            <Route path='started' element={<Started />}>
-              <Route index element={<Main />} />
-              <Route path='pricing' element={<Pricing />} />
-              <Route path='mysafe' element={<MySafe />} />
-              <Route path='mycare' element={<MyCare />} />
-              <Route path='estimate' element={<Estimate />} />
-            </Route>
-            <Route path='auth' element={<Started />}>
-              <Route index element={<Navigate to='/auth/login' />} />
-              <Route path='login' element={<Login />} />
-              <Route path='signup'>
-                <Route index element={<Navigate to='/auth/signup/info' />} />
-                <Route path='info' element={<SignupInfo />} />
-                <Route path='address' element={<SignupAddress />} />
-                <Route path='idcard' element={<SignupIdcard />} />
-                <Route path='complete' element={<SignupComplete />} />
+    <QueryParamProvider>
+      <GlobalStyle>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/'>
+              <Route index element={<Navigate to='/started' />} />
+              <Route path='started' element={<Started />}>
+                <Route index element={<Main />} />
+                <Route path='pricing' element={<Pricing />} />
+                <Route path='mysafe' element={<MySafe />} />
+                <Route path='mycare' element={<MyCare />} />
+                <Route path='estimate' element={<Estimate />} />
+              </Route>
+              <Route path='auth' element={<Started />}>
+                <Route index element={<Navigate to='/auth/login' />} />
+                <Route path='login' element={<Login />} />
+                <Route path='signup'>
+                  <Route index element={<Navigate to='/auth/signup/info' />} />
+                  <Route path='info' element={<SignupInfo />} />
+                  <Route path='address' element={<SignupAddress />} />
+                  <Route path='idcard' element={<SignupIdcard />} />
+                  <Route path='complete' element={<SignupComplete />} />
+                  <Route path='payments' element={<SignupPayments />} />
+                </Route>
               </Route>
             </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </GlobalStyle>
+          </Routes>
+        </BrowserRouter>
+      </GlobalStyle>
+    </QueryParamProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
