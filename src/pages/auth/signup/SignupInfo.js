@@ -99,8 +99,7 @@ export const SignupInfo = () => {
   };
 
   const onClick = async () => {
-    const value = form.getFieldsValue();
-    const { name, phoneId } = _.pick(value, 'name', 'phoneId');
+    const { name, phoneId } = form.getFieldsValue();
     const tryLogin = await onLogin(phoneId);
     if (tryLogin) {
       const { user, token } = tryLogin;
@@ -114,7 +113,7 @@ export const SignupInfo = () => {
         const redirect = localStorage.getItem('mykick-redirect');
         localStorage.setItem('mykick-token', token);
         localStorage.removeItem('mykick-redirect');
-        navigate(redirect);
+        navigate(redirect || '/');
         return;
       }
 
@@ -164,7 +163,7 @@ export const SignupInfo = () => {
       </Form>
       {verified && <VerifiedText>인증이 완료되었습니다.</VerifiedText>}
       <StartedBottom>
-        <StartedIndicator current={2} />
+        <StartedIndicator current={0} />
         <StartedBottomPrimary
           description={ready ? '배송지 입력하기' : '모든 정보를 입력해주세요'}
           disabled={!ready}

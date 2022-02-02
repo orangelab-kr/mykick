@@ -1,5 +1,6 @@
-import { AutoCenter } from 'antd-mobile';
 import Lottie from 'react-lottie';
+import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
+import * as animationData from '../../assets/lotties/64970-electric-scooter-baloon.json';
 import { NoStyledLink } from '../../components/NoStyledLink';
 import { StartedBottom } from '../../components/started/StartedBottom/StartedBottom';
 import { StartedBottomPrimary } from '../../components/started/StartedBottom/StartedBottomPrimary';
@@ -7,10 +8,8 @@ import { StartedBottomSecondary } from '../../components/started/StartedBottom/S
 import { StartedDescription } from '../../components/started/StartedDescription';
 import { StartedHashtags } from '../../components/started/StartedHashtags';
 import { StartedTitle } from '../../components/started/StartedTitle';
-import * as animationData from '../../assets/lotties/64970-electric-scooter-baloon.json';
-import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
 
-export const Main = () => {
+export const Landing = () => {
   return (
     <div>
       <StartedTitle>
@@ -18,12 +17,10 @@ export const Main = () => {
       </StartedTitle>
       <StartedDescription>나만의 튼튼한 하이킥 킥보드</StartedDescription>
       <StartedHashtags>#튼튼한 #킥보드 #마이킥</StartedHashtags>
-      <AutoCenter style={{ overflow: 'hidden' }}>
-        <Lottie
-          options={{ animationData }}
-          style={{ margin: '5em 0 0 0', pointerEvents: 'none' }}
-        />
-      </AutoCenter>
+      <Lottie
+        options={{ animationData }}
+        style={{ margin: '5em 0 0 0', height: '60vh', pointerEvents: 'none' }}
+      />
 
       <StartedBottom>
         <NoStyledLink to='/started/pricing'>
@@ -34,7 +31,7 @@ export const Main = () => {
 
         <NoStyledLink to='/auth/login'>
           <StartedBottomSecondary>
-            이미 구매하셨다면 이어서 달려볼까요?
+            이미 <Logo style={{ height: '.8em' }} /> 을 갖고 계신가요?
           </StartedBottomSecondary>
         </NoStyledLink>
       </StartedBottom>

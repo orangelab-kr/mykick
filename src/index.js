@@ -15,7 +15,7 @@ import { SignupIdcard } from './pages/auth/signup/SignupIdcard';
 import { SignupInfo } from './pages/auth/signup/SignupInfo';
 import { SignupPayments } from './pages/auth/signup/SignupPayments';
 import { Estimate } from './pages/started/Estimate';
-import { Main } from './pages/started/Main';
+import { Landing } from './pages/started/Landing';
 import { MyCare } from './pages/started/MyCare';
 import { MySafe } from './pages/started/MySafe';
 import { Pricing } from './pages/started/Pricing';
@@ -38,6 +38,8 @@ const GlobalStyle = styled.div`
   }
 `;
 
+const redirect = (to) => <Navigate to={to} />;
+
 ReactDOM.render(
   <React.StrictMode>
     <Reset />
@@ -46,9 +48,9 @@ ReactDOM.render(
         <BrowserRouter>
           <Routes>
             <Route path='/'>
-              <Route index element={<Navigate to='/started' />} />
+              <Route path='*' element={redirect('/')} />
               <Route path='started' element={<Started />}>
-                <Route index element={<Main />} />
+                <Route index element={<Landing />} />
                 <Route path='pricing' element={<Pricing />} />
                 <Route path='mysafe' element={<MySafe />} />
                 <Route path='mycare' element={<MyCare />} />
@@ -56,10 +58,12 @@ ReactDOM.render(
                 <Route path='complete' element={<StartedComplete />} />
               </Route>
               <Route path='auth' element={<Started />}>
-                <Route index element={<Navigate to='/auth/login' />} />
+                <Route index element={redirect('/auth/login')} />
+                <Route path='*' element={redirect('/auth/login')} />
                 <Route path='login' element={<Login />} />
                 <Route path='signup'>
-                  <Route index element={<Navigate to='/auth/signup/info' />} />
+                  <Route index element={redirect('/auth/signup/info')} />
+                  <Route path='*' element={redirect('/auth/signup/info')} />
                   <Route path='info' element={<SignupInfo />} />
                   <Route path='address' element={<SignupAddress />} />
                   <Route path='idcard' element={<SignupIdcard />} />

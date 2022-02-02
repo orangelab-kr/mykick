@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Lottie from 'react-lottie';
 import { useNavigate } from 'react-router-dom';
 import { StringParam, useQueryParam } from 'use-query-params';
-import * as RegisterIcon from '../../../assets/lotties/86864-card-ubank.json';
-import * as ErrorIcon from '../../../assets/lotties/6873-under-maintenance.json';
 import * as CheckingIcon from '../../../assets/lotties/10075-credit-card-success.json';
+import * as ErrorIcon from '../../../assets/lotties/6873-under-maintenance.json';
 import * as ReadyIcon from '../../../assets/lotties/68994-success.json';
+import * as RegisterIcon from '../../../assets/lotties/86864-card-ubank.json';
 import { DepthPage } from '../../../components/DepthPage';
 import { GobackLink } from '../../../components/GobackLink';
 import { PayWithToss } from '../../../components/PayWithToss';
@@ -14,7 +14,6 @@ import { StartedBottomPrimary } from '../../../components/started/StartedBottom/
 import { StartedBottomSecondary } from '../../../components/started/StartedBottom/StartedBottomSecondary';
 import { StartedDescription } from '../../../components/started/StartedDescription';
 import { StartedHashtags } from '../../../components/started/StartedHashtags';
-import { StartedIndicator } from '../../../components/started/StartedIndicator';
 import { StartedTitle } from '../../../components/started/StartedTitle';
 import { Client } from '../../../tools/client';
 
@@ -41,7 +40,7 @@ export const SignupPayments = () => {
   const onClick = () => {
     const redirect = localStorage.getItem('mykick-redirect');
     localStorage.removeItem('mykick-redirect');
-    navigate(redirect);
+    navigate(redirect || '/');
   };
 
   useEffect(onCheckActivated, [status]);
@@ -69,7 +68,6 @@ export const SignupPayments = () => {
       />
 
       <StartedBottom>
-        <StartedIndicator current={2} />
         {!status ? (
           <StartedBottomPrimary
             description={

@@ -1,6 +1,10 @@
-import { AutoCenter, Dialog } from 'antd-mobile';
+import { Dialog } from 'antd-mobile';
+import { useCallback, useEffect, useState } from 'react';
 import Lottie from 'react-lottie';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import * as greeting from '../../../assets/lotties/36125-greeting-animation-for-call-to-action.json';
+import * as register from '../../../assets/lotties/38435-register.json';
 import { DepthPage } from '../../../components/DepthPage';
 import { GobackLink } from '../../../components/GobackLink';
 import { StartedBottom } from '../../../components/started/StartedBottom/StartedBottom';
@@ -10,12 +14,8 @@ import { StartedDescription } from '../../../components/started/StartedDescripti
 import { StartedHashtags } from '../../../components/started/StartedHashtags';
 import { StartedIndicator } from '../../../components/started/StartedIndicator';
 import { StartedTitle } from '../../../components/started/StartedTitle';
-import * as register from '../../../assets/lotties/38435-register.json';
-import * as greeting from '../../../assets/lotties/36125-greeting-animation-for-call-to-action.json';
-import { useCallback, useEffect, useState } from 'react';
-import { useStorage } from '../../../tools/storage';
 import { Client } from '../../../tools/client';
-import styled from 'styled-components';
+import { useStorage } from '../../../tools/storage';
 
 const FailedWarningTitle = styled.div`
   font-size: 18px;
@@ -68,7 +68,7 @@ export const SignupComplete = () => {
   const onClick = () => {
     const redirect = localStorage.getItem('mykick-redirect');
     localStorage.removeItem('mykick-redirect');
-    navigate(redirect);
+    navigate(redirect || '/');
   };
 
   useEffect(onSignup, [onSignup]);
@@ -79,12 +79,10 @@ export const SignupComplete = () => {
         {loading ? '가입을 완료하는 중입니다.' : `${user.name}님 반갑습니다.`}
       </StartedDescription>
       <StartedHashtags>#개인정보도 #안전하게 #마이킥</StartedHashtags>
-      <AutoCenter style={{ overflow: 'hidden' }}>
-        <Lottie
-          options={{ animationData: loading ? register : greeting }}
-          style={{ margin: '5em 0 0 0', pointerEvents: 'none' }}
-        />
-      </AutoCenter>
+      <Lottie
+        options={{ animationData: loading ? register : greeting }}
+        style={{ margin: '5em 0 0 0', height: '60vh', pointerEvents: 'none' }}
+      />
       <StartedBottom>
         <StartedIndicator current={3} />
         <StartedBottomPrimary

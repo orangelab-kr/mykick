@@ -126,7 +126,7 @@ export const SignupAddress = () => {
       )}
 
       <StartedBottom>
-        <StartedIndicator current={2} />
+        <StartedIndicator current={1} />
         <StartedBottomPrimary
           description={ready ? '신분증 인증하기' : '모든 정보를 입력해주세요'}
           disabled={!ready}
