@@ -1,8 +1,11 @@
 import { Button, Image, SpinLoading } from 'antd-mobile';
 import axios from 'axios';
+import crypto from 'crypto-js';
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { imageURL } from '../../..';
+import { ReactComponent as Logo } from '../../../assets/icons/logo.svg';
 import { DepthPage } from '../../../components/DepthPage';
 import { GobackLink } from '../../../components/GobackLink';
 import { StartedBottom } from '../../../components/started/StartedBottom/StartedBottom';
@@ -13,8 +16,6 @@ import { StartedHashtags } from '../../../components/started/StartedHashtags';
 import { StartedIndicator } from '../../../components/started/StartedIndicator';
 import { StartedTitle } from '../../../components/started/StartedTitle';
 import { useStorage } from '../../../tools/storage';
-import crypto from 'crypto-js';
-import { useNavigate } from 'react-router-dom';
 
 const Preview = styled.div`
   width: 94%;
@@ -140,7 +141,7 @@ export const SignupIdcard = () => {
       <SafetyText>
         <SafetyTitle>✅ 마이킥이니까, 안심하세요.</SafetyTitle>
         <SafetyDescription>
-          <SafetyBold>마이킥</SafetyBold>은 고객님의 개인정보를 최우선으로
+          <Logo style={{ height: '.8em' }} />은 고객님의 개인정보를 최우선으로
           관리하고자 노력하고 있습니다.
         </SafetyDescription>
         <SafetyDescription>
