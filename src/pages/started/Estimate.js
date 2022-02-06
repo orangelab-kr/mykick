@@ -99,7 +99,7 @@ export const Estimate = () => {
           <StartedEstimateFirstPrice price={firstAddionalPrice} />
         </div>
       ) : (
-        <StartedLoading>견적서를 확인하고 있습니다.</StartedLoading>
+        <StartedLoading />
       )}
 
       <StartedBottom>

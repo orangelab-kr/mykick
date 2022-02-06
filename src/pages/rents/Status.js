@@ -45,7 +45,7 @@ export const RentStatus = () => {
     return <Navigate to='/rents' />;
   }
 
-  if (!rent) return <StartedLoading>잠시만 기다려주세요.</StartedLoading>;
+  if (!rent) return <StartedLoading />;
   return (
     <div>
       <StartedTitle subtitle='간편 조회'>상태</StartedTitle>

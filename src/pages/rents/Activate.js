@@ -30,7 +30,7 @@ export const RentActivate = () => {
       .finally(() => setLoading(false));
   };
 
-  if (!rent) return <StartedLoading>잠시만 기다려주세요.</StartedLoading>;
+  if (!rent) return <StartedLoading />;
   return (
     <DepthPage>
       <StartedTitle subtitle='마무리 단계'>활성화</StartedTitle>

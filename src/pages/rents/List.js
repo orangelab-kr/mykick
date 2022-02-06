@@ -18,7 +18,7 @@ export const RentList = () => {
   return (
     <div>
       <StartedTitle>렌트 목록</StartedTitle>
-      <StartedLoading>잠시만 기다려주세요.</StartedLoading>
+      <StartedLoading />
     </div>
   );
 };

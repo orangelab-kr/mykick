@@ -17,7 +17,7 @@ export const RentDetails = () => {
   };
 
   useEffect(redirectIfNotActivated, [navigate, rent, rentId]);
-  if (!rent) return <StartedLoading>잠시만 기다려주세요.</StartedLoading>;
+  if (!rent) return <StartedLoading />;
   return (
     <div>
       <StartedTitle>내 마이킥</StartedTitle>

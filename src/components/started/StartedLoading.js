@@ -13,6 +13,6 @@ export const StartedLoading = ({ children }) => (
     <AutoCenter style={{ overflow: 'hidden', marginTop: '12.5em' }}>
       <SpinLoading style={{ '--size': '50px' }} />
     </AutoCenter>
-    <LoadingText>{children}</LoadingText>
+    <LoadingText>{children || '잠시만 기다려주세요.'}</LoadingText>
   </>
 );
