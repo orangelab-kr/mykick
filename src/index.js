@@ -10,10 +10,14 @@ import { Started } from './components/started/Started';
 import { Login } from './pages/auth/Login';
 import { SignupAddress } from './pages/auth/signup/SignupAddress';
 import { SignupComplete } from './pages/auth/signup/SignupComplete';
-import { StartedComplete } from './pages/started/Complete';
 import { SignupIdcard } from './pages/auth/signup/SignupIdcard';
 import { SignupInfo } from './pages/auth/signup/SignupInfo';
 import { SignupPayments } from './pages/auth/signup/SignupPayments';
+import { RentActivate } from './pages/rents/Activate';
+import { RentDetails } from './pages/rents/Details';
+import { RentList } from './pages/rents/List';
+import { RentStatus } from './pages/rents/Status';
+import { StartedComplete } from './pages/started/Complete';
 import { Estimate } from './pages/started/Estimate';
 import { Landing } from './pages/started/Landing';
 import { MyCare } from './pages/started/MyCare';
@@ -48,6 +52,7 @@ ReactDOM.render(
         <BrowserRouter>
           <Routes>
             <Route path='/'>
+              <Route index element={redirect('/started')} />
               <Route path='*' element={redirect('/')} />
               <Route path='started' element={<Started />}>
                 <Route index element={<Landing />} />
@@ -56,6 +61,12 @@ ReactDOM.render(
                 <Route path='mycare' element={<MyCare />} />
                 <Route path='estimate' element={<Estimate />} />
                 <Route path='complete' element={<StartedComplete />} />
+              </Route>
+              <Route path='rents' element={<Started />}>
+                <Route index element={<RentList />} />
+                <Route path=':rentId' element={<RentDetails />} />
+                <Route path=':rentId/status' element={<RentStatus />} />
+                <Route path=':rentId/activate' element={<RentActivate />} />
               </Route>
               <Route path='auth' element={<Started />}>
                 <Route index element={redirect('/auth/login')} />

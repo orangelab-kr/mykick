@@ -67,7 +67,7 @@ export const StartedComplete = () => {
         <StartedIndicator current={4} />
         <StartedBottomPrimary
           disabled={loading}
-          description={'마이킥을 선택해주셔서 감사합니다'}
+          description='마이킥을 선택해주셔서 감사합니다'
           onClick={onClick}
         >
           신청 상태보기
