@@ -23,15 +23,13 @@ export const StartedPricingList = ({
     if (pricing) setPricing(pricing);
   };
 
-  useEffect(onInitialPricing, [initialPricingId, pricings, setPricing]);
   useEffect(getPricings, []);
-  if (loading) {
-    return (
-      <StartedLoading loading={loading}>
-        고객님께 맞는 최적의 상품을 찾고 있습니다.
-      </StartedLoading>
-    );
-  }
+  useEffect(onInitialPricing, [
+    initialPricingId,
+    pricings,
+    selectedPricing,
+    setPricing,
+  ]);
 
   const onSelect = (pricing) => () => {
     if (selectedPricing === pricing) return setPricing();
@@ -40,14 +38,20 @@ export const StartedPricingList = ({
 
   return (
     <div>
-      {pricings.map((pricing) => (
-        <StartedPricing
-          pricing={pricing}
-          key={pricing.pricingId}
-          selectedPricing={selectedPricing}
-          onSelect={onSelect(pricing)}
-        />
-      ))}
+      {!loading ? (
+        pricings.map((pricing) => (
+          <StartedPricing
+            pricing={pricing}
+            key={pricing.pricingId}
+            selectedPricing={selectedPricing}
+            onSelect={onSelect(pricing)}
+          />
+        ))
+      ) : (
+        <StartedLoading>
+          고객님께 맞는 최적의 상품을 찾고 있습니다.
+        </StartedLoading>
+      )}
     </div>
   );
 };

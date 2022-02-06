@@ -78,10 +78,7 @@ export const Estimate = () => {
       <StartedTitle>견적서</StartedTitle>
       <StartedDescription>확인하고 바로 결제하러 갈까요?</StartedDescription>
       <StartedHashtags>#착한 #가격 #마이킥</StartedHashtags>
-      <StartedLoading loading={loading}>
-        견적서를 확인하고 있습니다.
-      </StartedLoading>
-      {!loading && (
+      {!loading ? (
         <div>
           <StartedEstimate price={monthlyPrice}>
             {estimate.map((item) => (
@@ -101,7 +98,10 @@ export const Estimate = () => {
           </StartedEstimate>
           <StartedEstimateFirstPrice price={firstAddionalPrice} />
         </div>
+      ) : (
+        <StartedLoading>견적서를 확인하고 있습니다.</StartedLoading>
       )}
+
       <StartedBottom>
         <StartedIndicator current={3} />
         {!loading && user !== undefined ? (

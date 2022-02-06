@@ -8,15 +8,11 @@ const LoadingText = styled.div`
   font-weight: 700;
 `;
 
-export const StartedLoading = ({ loading, children }) => {
-  if (!loading) return <></>;
-
-  return (
-    <>
-      <AutoCenter style={{ overflow: 'hidden', marginTop: '12.5em' }}>
-        <SpinLoading style={{ '--size': '50px' }} />
-      </AutoCenter>
-      <LoadingText>{children}</LoadingText>
-    </>
-  );
-};
+export const StartedLoading = ({ children }) => (
+  <>
+    <AutoCenter style={{ overflow: 'hidden', marginTop: '12.5em' }}>
+      <SpinLoading style={{ '--size': '50px' }} />
+    </AutoCenter>
+    <LoadingText>{children}</LoadingText>
+  </>
+);
