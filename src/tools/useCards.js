@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Client } from './client';
 
 let cachedCards;
-export const useCards = ({ clearCache }) => {
+export const useCards = ({ clearCache } = {}) => {
   const [cards, setCards] = useState();
   useEffect(() => {
     if (!clearCache && cachedCards) return setCards(cachedCards);

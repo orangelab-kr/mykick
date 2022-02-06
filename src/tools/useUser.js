@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Client } from './client';
 
 let cachedUser;
-export const useUser = ({ clearCache }) => {
+export const useUser = ({ clearCache } = {}) => {
   const [user, setUser] = useState();
 
   useEffect(() => {
