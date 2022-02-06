@@ -6,6 +6,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import { Reset } from 'styled-reset';
 import { QueryParamProvider } from 'use-query-params';
+import { LoginCheck } from './components/LoginCheck';
 import { Started } from './components/started/Started';
 import { Login } from './pages/auth/Login';
 import { SignupAddress } from './pages/auth/signup/SignupAddress';
@@ -52,7 +53,7 @@ ReactDOM.render(
         <BrowserRouter>
           <Routes>
             <Route path='/'>
-              <Route index element={redirect('/started')} />
+              <Route index element={<LoginCheck />} />
               <Route path='*' element={redirect('/')} />
               <Route path='started' element={<Started />}>
                 <Route index element={<Landing />} />
