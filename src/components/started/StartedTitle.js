@@ -13,8 +13,8 @@ const Subtitle = styled.p`
   font-weight: 400;
 `;
 
-export const StartedTitle = ({ children, subtitle }) => (
-  <Title>
+export const StartedTitle = ({ children, subtitle, ...props }) => (
+  <Title {...props}>
     {children}
     {subtitle && <Subtitle children={subtitle} />}
   </Title>

@@ -15,10 +15,10 @@ export const RentList = () => {
   };
 
   useEffect(redirectToRentDetails, [navigate, rents]);
+  if (rents === undefined) return <StartedLoading />;
   return (
     <div>
       <StartedTitle>렌트 목록</StartedTitle>
-      <StartedLoading />
     </div>
   );
 };
