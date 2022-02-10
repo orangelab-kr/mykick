@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Client } from './client';
+import { useInterval } from './useInterval';
 
 let cachedRents;
 export const useRents = ({ clearCache } = {}) => {
@@ -20,10 +21,10 @@ export const useRents = ({ clearCache } = {}) => {
 };
 
 const secondaryCacheRents = {};
-export const useRent = (rentId, { clearCache } = {}) => {
+export const useRent = (rentId, { clearCache, realtime } = {}) => {
   const [rent, setRent] = useState();
 
-  useEffect(() => {
+  const load = () => {
     const getRentFromCache = () =>
       secondaryCacheRents[rentId] ||
       (cachedRents && cachedRents.find((rent) => rent.rentId === rentId));
@@ -38,6 +39,10 @@ export const useRent = (rentId, { clearCache } = {}) => {
     Client.get(`/rents/${rentId}`, { alert: false })
       .then(updateRent)
       .catch(() => setRent(null));
-  }, [clearCache, rentId]);
+  };
+
+  useInterval(load, realtime ? 10000 : 0);
+  useEffect(load, [clearCache, rentId]);
+
   return rent;
 };
