@@ -55,7 +55,7 @@ export const Estimate = () => {
     }
 
     if (cards !== undefined && cards.length <= 0) {
-      localStorage.setItem('mykick-redirect', '/started/estimate');
+      localStorage.setItem('mykick-redirect', '/started/complete');
       navigate('/auth/signup/payments');
       return;
     }
@@ -64,8 +64,8 @@ export const Estimate = () => {
   };
 
   const getNextButtonText = () => {
-    if (user !== undefined && user === null) return '가입하기';
-    if (cards !== undefined && cards.length <= 0) {
+    if (user === null) return '가입하기';
+    if (cards.length <= 0) {
       return <PayWithToss>토스 연결하기</PayWithToss>;
     }
 
@@ -75,7 +75,9 @@ export const Estimate = () => {
   useEffect(getEstimate, [navigate, storage]);
   return (
     <DepthPage>
-      <StartedTitle>견적서</StartedTitle>
+      <StartedTitle>
+        {user !== undefined && user === null ? '미리보기' : '견적서'}
+      </StartedTitle>
       <StartedDescription>확인하고 바로 결제하러 갈까요?</StartedDescription>
       <StartedHashtags>#착한 #가격 #마이킥</StartedHashtags>
       {!loading ? (
@@ -91,7 +93,7 @@ export const Estimate = () => {
             ))}
             <StartedEstimateItem
               description={'배송비'}
-              price={16000}
+              price={33000}
               discountPrice={0}
               optional={'특별 면제 이벤트 중!'}
             />
@@ -104,7 +106,7 @@ export const Estimate = () => {
 
       <StartedBottom>
         <StartedIndicator current={3} />
-        {!loading && user !== undefined ? (
+        {!loading && user !== undefined && cards !== undefined ? (
           <StartedBottomPrimary
             description={`월 ${monthlyPrice.toLocaleString()}원 (배송비 무료)`}
             onClick={onClick}

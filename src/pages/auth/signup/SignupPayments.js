@@ -90,15 +90,15 @@ export const SignupPayments = () => {
             disabled={loading}
             onClick={onClick}
           >
-            다음으로
+            결제하기
           </StartedBottomPrimary>
         ) : (
           <StartedBottomPrimary
-            disabled={true}
-            description={'오류가 발생하였습니다. 나중에 다시 시도하세요'}
+            onClick={onCheckoutClick}
+            description={'죄송합니다. 오류가 발생하였습니다'}
             color='danger'
           >
-            죄송합니다
+            재시도하기
           </StartedBottomPrimary>
         )}
 
