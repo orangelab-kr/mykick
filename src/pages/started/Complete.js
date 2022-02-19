@@ -1,4 +1,4 @@
-import { Rate } from 'antd-mobile';
+import { Dialog, Rate } from 'antd-mobile';
 import { useEffect, useState } from 'react';
 import Lottie from 'react-lottie';
 import { useNavigate } from 'react-router-dom';
@@ -23,6 +23,20 @@ export const AskRate = styled(StartedBottomSecondary)`
   align-items: center;
 `;
 
+const FailedWarningTitle = styled.div`
+  font-size: 18px;
+  font-weight: 800;
+`;
+
+const FailedContent = styled.div`
+  margin: 0.8em 0;
+  font-size: 16px;
+`;
+
+const FailedAsk = styled.div`
+  color: red;
+`;
+
 export const StartedComplete = () => {
   const navigate = useNavigate();
   const [rent, setRent] = useState();
@@ -37,14 +51,30 @@ export const StartedComplete = () => {
     form.cardId = cards[0].cardId;
     form.name = `${user.name}님의 마이킥`;
     storage.setAll({});
-    Client.post('/rents', form).then(({ data }) => {
-      setRent(data.rent);
-      setLoading(false);
-    });
+    Client.post('/rents', form)
+      .then(({ data }) => {
+        setRent(data.rent);
+        setLoading(false);
+      })
+      .catch((err) => {
+        const content = (
+          <>
+            <FailedWarningTitle>죄송합니다.</FailedWarningTitle>
+            <FailedContent>{err.message}</FailedContent>
+            <FailedAsk>다시 시도하시겠습니까?</FailedAsk>
+          </>
+        );
+
+        Dialog.confirm({
+          content,
+          confirmText: '다시 시도',
+          cancelText: '아니요',
+        }).then((confirm) => confirm && navigate('/'));
+      });
   };
 
   const onClick = () => navigate(`/rents/${rent.rentId}/status`);
-  useEffect(requestEstimate, [cards, storage, user]);
+  useEffect(requestEstimate, [cards, navigate, storage, user]);
   return (
     <div>
       <StartedTitle>{loading ? '신청 중...' : '신청 완료'}</StartedTitle>
@@ -67,7 +97,7 @@ export const StartedComplete = () => {
         <StartedIndicator current={4} />
         <StartedBottomPrimary
           disabled={loading}
-          description='마이킥을 선택해주셔서 감사합니다'
+          description='영업일 기준 24시간내로 전화드립니다.'
           onClick={onClick}
         >
           신청 상태보기

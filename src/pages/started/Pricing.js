@@ -18,7 +18,9 @@ export const Pricing = () => {
   const storage = useStorage('started');
 
   useEffect(() => {
-    storage.set('pricingId', pricing && pricing.pricingId);
+    if (!pricing) return;
+    const { pricingId } = pricing;
+    storage.setAll({ pricingId });
   }, [pricing, storage]);
 
   return (

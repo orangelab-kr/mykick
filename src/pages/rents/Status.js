@@ -39,7 +39,7 @@ const StepWithMoreHeight = styled(Steps.Step)`
 
 export const RentStatus = () => {
   const { rentId } = useParams();
-  const rent = useRent(rentId);
+  const rent = useRent(rentId, { realtime: true });
   if (!rentId || rent === null) {
     Toast.show({ icon: 'fail', content: '렌트를 찾을 수 없습니다.' });
     return <Navigate to='/rents' />;
