@@ -8,6 +8,7 @@ export const StartedPricingList = ({
   setPricing,
   initialPricingId,
 }) => {
+  const [init, setInit] = useState(false);
   const [loading, setLoading] = useState(true);
   const [pricings, setPricings] = useState([]);
 
@@ -18,6 +19,8 @@ export const StartedPricingList = ({
   };
 
   const onInitialPricing = () => {
+    if (init) return;
+    setInit(true);
     if (selectedPricing) return;
     const pricing = pricings.find((p) => p.pricingId === initialPricingId);
     if (pricing) setPricing(pricing);
@@ -25,6 +28,7 @@ export const StartedPricingList = ({
 
   useEffect(getPricings, []);
   useEffect(onInitialPricing, [
+    init,
     initialPricingId,
     pricings,
     selectedPricing,
