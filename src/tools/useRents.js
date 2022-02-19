@@ -3,7 +3,7 @@ import { Client } from './client';
 import { useInterval } from './useInterval';
 
 let cachedRents;
-export const useRents = ({ clearCache } = {}) => {
+export const useRents = ({ clearCache, params } = {}) => {
   const [rents, setRents] = useState();
   useEffect(() => {
     if (!clearCache && cachedRents) return setRents(cachedRents);
@@ -12,10 +12,10 @@ export const useRents = ({ clearCache } = {}) => {
       setRents(cachedRents);
     };
 
-    Client.get('/rents', { alert: false })
+    Client.get('/rents', { alert: false, params })
       .then(updateRents)
       .catch(() => setRents(null));
-  }, [clearCache]);
+  }, [clearCache, params]);
 
   return rents;
 };
@@ -41,8 +41,22 @@ export const useRent = (rentId, { clearCache, realtime } = {}) => {
       .catch(() => setRent(null));
   };
 
-  useInterval(load, realtime ? 10000 : 0);
+  useInterval(load, realtime ? 10000 : null);
   useEffect(load, [clearCache, rentId]);
 
   return rent;
+};
+
+export const useRentStatus = (rentId, { realtime } = {}) => {
+  const [status, setStatus] = useState();
+
+  const load = () =>
+    Client.get(`/rents/${rentId}/status`, { alert: false })
+      .then(({ data }) => setStatus(data.status))
+      .catch(() => setStatus(null));
+
+  useInterval(load, realtime ? 10000 : null);
+  useEffect(load, [rentId]);
+
+  return status;
 };
