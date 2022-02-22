@@ -66,7 +66,7 @@ export const Estimate = () => {
   const getNextButtonText = () => {
     if (user === null) return '가입하기';
     if (cards.length <= 0) {
-      return <PayWithToss>토스 연결하기</PayWithToss>;
+      return <PayWithToss>토스 또는 신용/체크카드 연결하기</PayWithToss>;
     }
 
     return '결제하기';
