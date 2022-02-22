@@ -1,110 +1,66 @@
-import { useEffect, useState } from 'react';
-import Lottie from 'react-lottie';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { StringParam, useQueryParam } from 'use-query-params';
-import * as CheckingIcon from '../../../assets/lotties/10075-credit-card-success.json';
-import * as ErrorIcon from '../../../assets/lotties/6873-under-maintenance.json';
-import * as ReadyIcon from '../../../assets/lotties/68994-success.json';
-import * as RegisterIcon from '../../../assets/lotties/86864-card-ubank.json';
+import {
+  BooleanParam,
+  StringParam,
+  useQueryParam,
+  withDefault,
+} from 'use-query-params';
+import { Form } from 'antd-mobile';
 import { DepthPage } from '../../../components/DepthPage';
-import { GobackLink } from '../../../components/GobackLink';
-import { PayWithToss } from '../../../components/PayWithToss';
+import { PaymentCard } from '../../../components/payments/Card/PaymentCard';
+import { PaymentCardButton } from '../../../components/payments/Card/PaymentCardButton';
+import { PaymentToss } from '../../../components/payments/Toss/PaymentToss';
+import { PaymentTossButton } from '../../../components/payments/Toss/PaymentTossButton';
 import { StartedBottom } from '../../../components/started/StartedBottom/StartedBottom';
-import { StartedBottomPrimary } from '../../../components/started/StartedBottom/StartedBottomPrimary';
 import { StartedBottomSecondary } from '../../../components/started/StartedBottom/StartedBottomSecondary';
 import { StartedDescription } from '../../../components/started/StartedDescription';
 import { StartedHashtags } from '../../../components/started/StartedHashtags';
 import { StartedTitle } from '../../../components/started/StartedTitle';
-import { Client } from '../../../tools/client';
 
 export const SignupPayments = () => {
   const navigate = useNavigate();
   const [ready, setReady] = useState(false);
   const [status] = useQueryParam('status', StringParam);
-  const [loading, setLoading] = useState(!!status);
-  const onCheckoutClick = async () => {
-    setLoading(true);
-    Client.get('/cards/checkout').then(({ data }) => {
-      window.location.href = data.checkoutUri;
-      setLoading(false);
-    });
-  };
+  const [cardMode, setCardMode] = useState(false);
+  const [form] = Form.useForm();
 
-  const onCheckActivated = () => {
-    if (status !== 'ACTIVATED') return;
-    Client.get('/cards/sync')
-      .then(({ data }) => setReady(!!data.card))
-      .then(() => setLoading(false));
-  };
-
-  const onClick = () => {
+  const onNext = () => {
     const redirect = localStorage.getItem('mykick-redirect');
     localStorage.removeItem('mykick-redirect');
     navigate(redirect || '/');
   };
 
-  useEffect(onCheckActivated, [status]);
   return (
     <DepthPage>
-      <StartedTitle subtitle='토스로 간편하게'>결제</StartedTitle>
+      <StartedTitle subtitle='카드 연결도 간편하게'>결제</StartedTitle>
       <StartedDescription>등록시, 매월 자동으로 결제됩니다.</StartedDescription>
       <StartedHashtags>#결제도 #간편하게 #마이킥</StartedHashtags>
-      <Lottie
-        options={{
-          loop: !ready,
-          animationData: !status
-            ? RegisterIcon
-            : ready
-            ? ReadyIcon
-            : status === 'ACTIVATED'
-            ? CheckingIcon
-            : ErrorIcon,
-        }}
-        style={{
-          margin: '5em 0 0 0',
-          height: '60vh',
-          pointerEvents: 'none',
-        }}
-      />
+      {cardMode ? (
+        <PaymentCard form={form} />
+      ) : (
+        <PaymentToss ready={ready} status={status} />
+      )}
 
       <StartedBottom>
-        {!status ? (
-          <StartedBottomPrimary
-            description={
-              loading
-                ? '토스와 연결하는 중입니다'
-                : '원클릭으로 간편하게 결제하세요'
-            }
-            disabled={loading}
-            onClick={onCheckoutClick}
-          >
-            <PayWithToss>토스로 결제하기</PayWithToss>
-          </StartedBottomPrimary>
-        ) : status === 'ACTIVATED' ? (
-          <StartedBottomPrimary
-            description={
-              loading
-                ? '토스에서 정보를 불러오는 중입니다'
-                : '토스와 연결이 완료되었습니다.'
-            }
-            disabled={loading}
-            onClick={onClick}
-          >
-            결제하기
-          </StartedBottomPrimary>
+        {cardMode ? (
+          <PaymentCardButton
+            form={form}
+            ready={ready}
+            setReady={setReady}
+            onNext={onNext}
+          />
         ) : (
-          <StartedBottomPrimary
-            onClick={onCheckoutClick}
-            description={'죄송합니다. 오류가 발생하였습니다'}
-            color='danger'
-          >
-            재시도하기
-          </StartedBottomPrimary>
+          <PaymentTossButton
+            status={status}
+            setReady={setReady}
+            onNext={onNext}
+          />
         )}
 
-        <GobackLink>
-          <StartedBottomSecondary>뒤로 가기</StartedBottomSecondary>
-        </GobackLink>
+        <StartedBottomSecondary onClick={() => setCardMode((mode) => !mode)}>
+          {cardMode ? '토스로 결제하기' : '신용/체크카드로 결제하기'}
+        </StartedBottomSecondary>
       </StartedBottom>
     </DepthPage>
   );
