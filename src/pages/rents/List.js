@@ -6,24 +6,14 @@ import { useRents } from '../../tools/useRents';
 
 export const RentList = () => {
   const navigate = useNavigate();
-  const rents = useRents({
-    params: {
-      status: [
-        'Requested',
-        'Shipping',
-        'Shipped',
-        'Activated',
-        'Terminated',
-        'Suspended',
-      ],
-    },
-  });
+  const rents = useRents();
 
   const redirectToRentDetails = () => {
     if (rents === undefined) return;
     if (rents === null) return navigate('/');
-    if (rents.length <= 0) return navigate('/started/pricing');
-    navigate(`/rents/${rents[0].rentId}`);
+    const filteredRents = rents.filter((r) => r.status !== 'Cancelled');
+    if (filteredRents.length <= 0) return navigate('/started/pricing');
+    navigate(`/rents/${filteredRents[0].rentId}`);
   };
 
   useEffect(redirectToRentDetails, [navigate, rents]);

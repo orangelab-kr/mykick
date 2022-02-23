@@ -48,7 +48,6 @@ export const StartedComplete = () => {
   const requestEstimate = () => {
     if (!user || !cards) return;
     const form = { ...storage.get() };
-    form.cardId = cards[0].cardId;
     form.name = `${user.name}님의 마이킥`;
     storage.setAll({});
     Client.post('/rents', form)

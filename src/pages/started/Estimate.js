@@ -114,7 +114,7 @@ export const Estimate = () => {
             {getNextButtonText()}
           </StartedBottomPrimary>
         ) : (
-          <StartedBottomPrimary description='잠시만 기다려주세요.'>
+          <StartedBottomPrimary description='잠시만 기다려주세요' disabled>
             견적을 조회하고 있습니다.
           </StartedBottomPrimary>
         )}
