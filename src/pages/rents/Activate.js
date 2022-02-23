@@ -1,7 +1,8 @@
-import { Toast } from 'antd-mobile';
+import { Button, Form, Input, Toast } from 'antd-mobile';
+import { CheckOutline } from 'antd-mobile-icons';
 import { useState } from 'react';
 import QrReader from 'react-qr-reader';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
 import { DepthPage } from '../../components/DepthPage';
 import { NoStyledLink } from '../../components/NoStyledLink';
@@ -21,16 +22,24 @@ export const RentActivate = () => {
   const rent = useRent(rentId);
 
   const onError = () => Toast.show({ content: '카메라를 실행할 수 없습니다.' });
-  const onScan = async (url) => {
-    if (loading || !url) return;
+  const onRequest = async (payload) => {
     setLoading(true);
-    if (window.navigator.vibrate) window.navigator.vibrate(100);
-    Client.post(`/rents/${rent.rentId}/activate`, { url })
+    Client.post(`/rents/${rent.rentId}/activate`, payload)
       .then(() => setActivate(true))
       .finally(() => setLoading(false));
   };
 
+  const onScan = async (url) => {
+    if (loading || !url) return;
+    if (window.navigator.vibrate) window.navigator.vibrate(100);
+    await onRequest({ url });
+  };
+
   if (!rent) return <StartedLoading />;
+  if (rent.status !== 'Shipped') {
+    return <Navigate to={`/rents/${rent.rentId}`} />;
+  }
+
   return (
     <DepthPage>
       <StartedTitle subtitle='마무리 단계'>활성화</StartedTitle>
@@ -40,6 +49,28 @@ export const RentActivate = () => {
         onScan={onScan}
         onError={onError}
       />
+
+      <Form onFinish={onRequest}>
+        <Form.Item
+          name='kickboardCode'
+          label='킥보드 코드'
+          rules={[{ length: 6, message: '킥보드 코드는 6자리입니다.' }]}
+          extra={
+            <Button
+              type='submit'
+              color='primary'
+              disabled={loading || activate}
+            >
+              <CheckOutline /> 확인
+            </Button>
+          }
+        >
+          <Input
+            placeholder='킥보드 코드를 입력해주세요.'
+            disabled={loading || activate}
+          />
+        </Form.Item>
+      </Form>
 
       <StartedBottom>
         <NoStyledLink to={`/rents/${rent.rentId}`}>

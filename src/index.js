@@ -29,7 +29,7 @@ import { Pricing } from './pages/started/Pricing';
 export const baseURL =
   window.location.host === 'my.hikick.kr'
     ? 'https://my-api.hikick.kr/v1'
-    : 'https://my-api.staging.hikick.kr/v1';
+    : 'http://localhost:3001/v1';
 
 export const imageURL =
   window.location.host === 'my.hikick.kr'
