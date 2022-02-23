@@ -17,16 +17,15 @@ import { useStorage } from '../../tools/storage';
 export const MySafe = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const [addon, setMySafe] = useState();
+  const [addon, setAddon] = useState();
   const storage = useStorage('started');
 
   const getAddon = () => {
-    const isMySafe = (addon) => addon.name.includes('마이세이프');
-
+    const isAddon = (addon) => addon.name.includes(`마이세이프`);
     Client.get('/addons')
       .finally(() => setLoading(false))
-      .then(({ data }) => data.addons.find(isMySafe))
-      .then(setMySafe);
+      .then(({ data }) => data.addons.find(isAddon))
+      .then(setAddon);
   };
 
   const onClick = (include) => () => {
@@ -81,7 +80,7 @@ export const MySafe = () => {
               ? '가격 확인하는 중...'
               : addon
               ? `월 ${addon.price.toLocaleString()}원`
-              : '마이세이프는 판매가 임시 중단되었습니다.'
+              : '선택하신 상품에는 구매하실 수 없습니다.'
           }
         >
           마이세이프 포함하기

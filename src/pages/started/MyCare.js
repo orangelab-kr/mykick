@@ -10,20 +10,24 @@ import { StartedIndicator } from '../../components/started/StartedIndicator';
 import { StartedTitle } from '../../components/started/StartedTitle';
 import { Client } from '../../tools/client';
 import { useStorage } from '../../tools/storage';
+import { usePricing } from '../../tools/usePricing';
 
 export const MyCare = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const [addon, setMySafe] = useState();
+  const [addon, setAddon] = useState();
   const storage = useStorage('started');
+  const pricing = usePricing(storage.get('pricingId'));
 
   const getAddon = () => {
-    const isMyCare = (addon) => addon.name.includes('마이케어');
+    if (!pricing) return;
+    const isAddon = (addon) =>
+      addon.name.includes(`마이케어 ${pricing.periodMonths}개월`);
 
     Client.get('/addons')
       .finally(() => setLoading(false))
-      .then(({ data }) => data.addons.find(isMyCare))
-      .then(setMySafe);
+      .then(({ data }) => data.addons.find(isAddon))
+      .then(setAddon);
   };
 
   const onClick = (include) => () => {
@@ -37,7 +41,7 @@ export const MyCare = () => {
     navigate('/started/estimate');
   };
 
-  useEffect(getAddon, []);
+  useEffect(getAddon, [pricing]);
   useEffect(() => {
     if (!addon) return;
     const addonIds = storage.get('addonIds', []);
@@ -70,8 +74,10 @@ export const MyCare = () => {
             loading
               ? '가격 확인하는 중...'
               : addon
-              ? `월 ${addon.price.toLocaleString()}원`
-              : '마이케어는 판매가 임시 중단되었습니다.'
+              ? `${addon.price.toLocaleString()}원 / ${
+                  pricing.periodMonths
+                }개월`
+              : '선택하신 상품에는 구매하실 수 없습니다.'
           }
         >
           마이케어 포함하기
