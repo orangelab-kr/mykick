@@ -8,6 +8,7 @@ import {
 import { Navigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
+import { GobackLink } from '../../components/GobackLink';
 import { NoStyledLink } from '../../components/NoStyledLink';
 import { StartedBottom } from '../../components/started/StartedBottom/StartedBottom';
 import { StartedBottomPrimary } from '../../components/started/StartedBottom/StartedBottomPrimary';
@@ -50,32 +51,43 @@ export const RentStatus = () => {
     <div>
       <StartedTitle subtitle='간편 조회'>상태</StartedTitle>
       <StartedDescription>{rent.name}</StartedDescription>
-      <StepsWithBiggerSize
-        direction='vertical'
-        current={StatusStep[rent.status]}
-      >
-        <StepWithMoreHeight
-          title='신청'
-          description='킥보드 배정 및 배송 준비 중입니다.'
-          icon={<EditFill />}
-        />
-        <StepWithMoreHeight
-          title='배송 중...'
-          description={'배송이 시작되었습니다.'}
-          icon={<TruckOutline />}
-        />
-        <StepWithMoreHeight
-          status='error'
-          title='설정 필요'
-          description='배송이 완료되었습니다. 아래 버튼을 눌러 마무리 설정을 진행하세요.'
-          icon={<ExclamationCircleFill />}
-        />
-        <StepWithMoreHeight
-          title='사용 중'
-          description='마이킥을 이용하고 있습니다. 매월 자동으로 토스를 통해 자동 결제됩니다.'
-          icon={<HandPayCircleOutline />}
-        />
-      </StepsWithBiggerSize>
+      {rent.status !== 'Cancelled' && (
+        <StepsWithBiggerSize
+          direction='vertical'
+          current={StatusStep[rent.status]}
+        >
+          <StepWithMoreHeight
+            title='신청'
+            description='킥보드 배정 및 배송 준비 중입니다.'
+            icon={<EditFill />}
+          />
+          <StepWithMoreHeight
+            title='배송 중...'
+            description={'배송이 시작되었습니다.'}
+            icon={<TruckOutline />}
+          />
+          <StepWithMoreHeight
+            title='설정 필요'
+            description='배송이 완료되었습니다. 아래 버튼을 눌러 마무리 설정을 진행하세요.'
+            icon={<ExclamationCircleFill />}
+          />
+          <StepWithMoreHeight
+            title='사용 중'
+            description='마이킥을 이용하고 있습니다. 매월 자동으로 토스를 통해 자동 결제됩니다.'
+            icon={<HandPayCircleOutline />}
+          />
+        </StepsWithBiggerSize>
+      )}
+
+      {rent.status === 'Cancelled' && (
+        <StepsWithBiggerSize direction='vertical' current={0}>
+          <StepWithMoreHeight
+            title='취소됨'
+            description='해당 렌트는 취소 처리되었습니다.'
+            icon={<ExclamationCircleFill />}
+          />
+        </StepsWithBiggerSize>
+      )}
 
       {rent.status === 'Requested' && (
         <StartedBottom>
@@ -122,6 +134,22 @@ export const RentStatus = () => {
               이용하기
             </StartedBottomPrimary>
           </NoStyledLink>
+          <StartedBottomSecondary>
+            <Logo style={{ height: '.8em' }} />을 선택해주셔서 진심으로
+            감사드립니다.
+          </StartedBottomSecondary>
+        </StartedBottom>
+      )}
+
+      {!['Requested', 'Shipping', 'Shipped', 'Activated'].includes(
+        rent.status
+      ) && (
+        <StartedBottom>
+          <GobackLink>
+            <StartedBottomPrimary description='이전 페이지로 이동합니다'>
+              돌아가기
+            </StartedBottomPrimary>
+          </GobackLink>
           <StartedBottomSecondary>
             <Logo style={{ height: '.8em' }} />을 선택해주셔서 진심으로
             감사드립니다.

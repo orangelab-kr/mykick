@@ -8,8 +8,11 @@ const Text = styled.div`
   word-break: keep-all;
 `;
 
-export const StartedEstimateFirstPrice = ({ price }) => (
-  <Text>
-    첫 달은 부가 상품 {price.toLocaleString()}원과 함께 결제될 예정입니다.
-  </Text>
-);
+export const StartedEstimateFirstPrice = ({ price }) => {
+  if (!price) return <></>;
+  return (
+    <Text>
+      첫 달은 부가 상품 {price.toLocaleString()}원과 함께 결제될 예정입니다.
+    </Text>
+  );
+};
