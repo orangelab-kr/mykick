@@ -1,8 +1,10 @@
 import { Button, Dialog, Form, Input } from 'antd-mobile';
+import dayjs from 'dayjs';
 import _ from 'lodash';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { DateInput } from '../../../components/DateInput';
 import { DepthPage } from '../../../components/DepthPage';
 import { GobackLink } from '../../../components/GobackLink';
 import { StartedBottom } from '../../../components/started/StartedBottom/StartedBottom';
@@ -65,7 +67,8 @@ export const SignupInfo = () => {
 
   const onReady = () => {
     setReady(false);
-    const { name, phoneId } = form.getFieldsValue();
+    const { name, phoneId, birthday } = form.getFieldsValue();
+    if (!dayjs(birthday).isValid()) return;
     if (name.length <= 2) return;
     if (!phoneId) return;
     setReady(true);
@@ -99,7 +102,7 @@ export const SignupInfo = () => {
   };
 
   const onClick = async () => {
-    const { name, phoneId } = form.getFieldsValue();
+    const { name, birthday, phoneId } = form.getFieldsValue();
     const tryLogin = await onLogin(phoneId);
     if (tryLogin) {
       const { user, token } = tryLogin;
@@ -125,7 +128,7 @@ export const SignupInfo = () => {
       return;
     }
 
-    storage.setAll({ name, phoneId });
+    storage.setAll({ name, birthday, phoneId });
     navigate('/auth/signup/address');
   };
 
@@ -137,9 +140,22 @@ export const SignupInfo = () => {
         진행을 위해 아래 정보가 필요합니다.
       </StartedDescription>
       <StartedHashtags>#개인정보도 #안전하게 #마이킥</StartedHashtags>
-      <Form form={form} style={{ marginTop: '10%' }} onValuesChange={onReady}>
+      <Form
+        form={form}
+        style={{ marginTop: '10%' }}
+        onValuesChange={onReady}
+        initialValues={{ birthday: dayjs('2000-01-01').toDate() }}
+      >
         <Form.Item name='name' label='성함'>
           <Input type='name' placeholder='홍길동' />
+        </Form.Item>
+        <Form.Item name='birthday' label='생년월일'>
+          <DateInput
+            format='YYYY년 MM월 DD일'
+            precision='day'
+            min={new Date(0)}
+            max={new Date()}
+          />
         </Form.Item>
         <Form.Item name='phoneNo' label='전화번호'>
           <Input
