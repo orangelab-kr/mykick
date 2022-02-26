@@ -28,6 +28,11 @@ const SecondaryTitle = styled(PrimaryTitle)`
   font-size: 1.5em;
 `;
 
+const GrayText = styled.div`
+  color: #999;
+  font-size: 0.85em;
+`;
+
 export const RentProgress = ({ expiredAt, scooterBattery, iotBattery }) => {
   const daysLeft = dayjs(expiredAt).diff(dayjs(), 'days');
   const daysPercent = Math.round(Math.min(100, (100 / 30) * daysLeft));
@@ -42,21 +47,21 @@ export const RentProgress = ({ expiredAt, scooterBattery, iotBattery }) => {
         color={isLowDaysLeft ? 'danger' : 'success'}
       >
         <SecondaryTitle>{daysLeft.toLocaleString()}일</SecondaryTitle>
-        <div>남은 일자</div>
+        <GrayText>남은 일자</GrayText>
       </SubProgressCircle>
       <PrimaryProgressCircle
         percent={scooterBattery}
         color={isLowScooterBattery ? 'danger' : 'success'}
       >
-        <PrimaryTitle>🛴 {scooterBattery}%</PrimaryTitle>
-        <div>{isLowScooterBattery ? '충전 필요' : '사용 가능'}</div>
+        <PrimaryTitle>{scooterBattery}%</PrimaryTitle>
+        <GrayText>{isLowScooterBattery ? '충전 필요' : '사용 가능'}</GrayText>
       </PrimaryProgressCircle>
       <SubProgressCircle
         percent={iotBattery}
         color={isLowIotBattery ? 'danger' : 'success'}
       >
         <SecondaryTitle>{iotBattery}%</SecondaryTitle>
-        <div>보조 전원</div>
+        <GrayText>보조 전원</GrayText>
       </SubProgressCircle>
     </Container>
   );
