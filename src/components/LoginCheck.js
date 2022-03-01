@@ -4,7 +4,6 @@ import { StartedLoading } from './started/StartedLoading';
 
 export const LoginCheck = () => {
   const user = useUser();
-
   if (user === undefined) return <StartedLoading />;
   if (user === null) return <Navigate to='/started' />;
   if (user) return <Navigate to='/rents' />;

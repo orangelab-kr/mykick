@@ -15,6 +15,7 @@ import { SignupComplete } from './pages/auth/signup/SignupComplete';
 import { SignupIdcard } from './pages/auth/signup/SignupIdcard';
 import { SignupInfo } from './pages/auth/signup/SignupInfo';
 import { SignupPayments } from './pages/auth/signup/SignupPayments';
+import { Token } from './pages/auth/Token';
 import { RentActivate } from './pages/rents/Activate';
 import { RentDetails } from './pages/rents/Details';
 import { RentList } from './pages/rents/List';
@@ -75,6 +76,7 @@ ReactDOM.render(
                   <Route index element={redirect('/auth/login')} />
                   <Route path='*' element={redirect('/auth/login')} />
                   <Route path='login' element={<Login />} />
+                  <Route path='token' element={<Token />} />
                   <Route path='signup'>
                     <Route index element={redirect('/auth/signup/info')} />
                     <Route path='*' element={redirect('/auth/signup/info')} />

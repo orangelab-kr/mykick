@@ -5,7 +5,6 @@ import { Client } from './client';
 let cachedUser;
 export const useUser = ({ clearCache } = {}) => {
   const [user, setUser] = useState();
-
   useEffect(() => {
     if (!clearCache && cachedUser) return setUser(cachedUser);
     const updateUser = ({ data }) => {
