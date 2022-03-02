@@ -6,7 +6,7 @@ import { useRents } from '../../tools/useRents';
 
 export const RentList = () => {
   const navigate = useNavigate();
-  const rents = useRents();
+  const [rents] = useRents();
 
   const redirectToRentDetails = () => {
     if (rents === undefined) return;

@@ -17,7 +17,7 @@ export const useRents = ({ clearCache, params } = {}) => {
       .catch(() => setRents(null));
   }, [clearCache, params]);
 
-  return rents;
+  return [rents, setRents];
 };
 
 const secondaryCacheRents = {};
@@ -41,10 +41,10 @@ export const useRent = (rentId, { clearCache, realtime } = {}) => {
       .catch(() => setRent(null));
   };
 
-  useInterval(load, realtime ? 10000 : null);
+  useInterval(load, realtime ? 30000 : null);
   useEffect(load, [clearCache, rentId]);
 
-  return rent;
+  return [rent, setRent];
 };
 
 export const useRentStatus = (rentId, { realtime } = {}) => {
@@ -55,8 +55,8 @@ export const useRentStatus = (rentId, { realtime } = {}) => {
       .then(({ data }) => setStatus(data.status))
       .catch(() => setStatus(null));
 
-  useInterval(load, realtime ? 10000 : null);
+  useInterval(load, realtime ? 30000 : null);
   useEffect(load, [rentId]);
 
-  return status;
+  return [status, setStatus];
 };

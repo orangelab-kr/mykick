@@ -22,7 +22,7 @@ Client.interceptors.response.use(
 function getInterceptorRequest(config) {
   const accessKey = getAccessKey();
   config.baseURL = `${baseURL}`;
-  config.headers = { authorization: accessKey };
+  if (accessKey) config.headers = { authorization: accessKey };
   config.alert = config?.alert === undefined ? true : config?.alert;
 
   return config;

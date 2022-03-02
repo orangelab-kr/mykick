@@ -17,8 +17,8 @@ const RentName = styled(StartedTitle)`
 export const RentDetails = () => {
   const navigate = useNavigate();
   const { rentId } = useParams();
-  const rent = useRent(rentId, { clearCache: true, realtime: true });
-  const status = useRentStatus(rentId, { realtime: true });
+  const [rent, setRent] = useRent(rentId, { clearCache: true, realtime: true });
+  const [status] = useRentStatus(rentId, { realtime: true });
 
   const redirectStatusOrMain = () => {
     if (rent === undefined) return;
@@ -49,7 +49,7 @@ export const RentDetails = () => {
       />
       <Divider />
       {rent.status === 'Activated' ? (
-        <RentControl rent={rent} status={status} />
+        <RentControl rent={rent} setRent={setRent} status={status} />
       ) : (
         <RentSuspended rent={rent} />
       )}

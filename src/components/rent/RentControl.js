@@ -12,7 +12,7 @@ import { Client } from '../../tools/client';
 import { MapMyLocation } from '../map/MapMyLocation';
 import { RentActionButton } from './RentDetails/RentActionButton';
 
-export const RentControl = ({ rent, status }) => {
+export const RentControl = ({ rent, setRent, status }) => {
   const [loading, setLoading] = useState({});
   const [zoom, setZoom] = useState(16);
   const defaultLoc = { lat: 37.50526, lng: 127.054806 };
@@ -21,7 +21,7 @@ export const RentControl = ({ rent, status }) => {
   const getCenter = () =>
     status ? { y: status.gps.latitude, x: status.gps.longitude } : currentLoc;
   const onClick =
-    (path, refresh = false, confirm = false) =>
+    (path, confirm = false) =>
     async () => {
       try {
         if (confirm) {
@@ -36,7 +36,8 @@ export const RentControl = ({ rent, status }) => {
 
         if (window.navigator.vibrate) window.navigator.vibrate(100);
         setLoading((loading) => ({ ...loading, [path]: true }));
-        await Client.get(`/rents/${rent.rentId}${path}`);
+        const { data } = await Client.get(`/rents/${rent.rentId}${path}`);
+        setRent(data.rent);
       } finally {
         setLoading((loading) => ({ ...loading, [path]: false }));
       }

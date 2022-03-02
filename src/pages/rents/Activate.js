@@ -19,7 +19,7 @@ export const RentActivate = () => {
   const { rentId } = useParams();
   const [loading, setLoading] = useState(false);
   const [activate, setActivate] = useState(false);
-  const rent = useRent(rentId);
+  const [rent] = useRent(rentId);
 
   const onError = () => Toast.show({ content: '카메라를 실행할 수 없습니다.' });
   const onRequest = async (payload) => {
@@ -46,6 +46,7 @@ export const RentActivate = () => {
       <StartedDescription>킥보드 QR코드를 인식시켜주세요.</StartedDescription>
       <QrReader
         style={{ marginTop: '3em' }}
+        constraints={{ facingMode: 'environment' }}
         onScan={onScan}
         onError={onError}
       />
