@@ -1,8 +1,10 @@
 import { Divider } from 'antd-mobile';
+import { SetOutline } from 'antd-mobile-icons';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
+import { NoStyledLink } from '../../components/NoStyledLink';
 import { RentControl } from '../../components/rent/RentControl';
 import { RentProgress } from '../../components/rent/RentDetails/RentProgress';
 import { RentSuspended } from '../../components/rent/RentSuspended';
@@ -17,7 +19,7 @@ const RentName = styled(StartedTitle)`
 export const RentDetails = () => {
   const navigate = useNavigate();
   const { rentId } = useParams();
-  const [rent, setRent] = useRent(rentId, { clearCache: true, realtime: true });
+  const [rent, setRent] = useRent(rentId, { realtime: true });
   const [status] = useRentStatus(rentId, { realtime: true });
 
   const redirectStatusOrMain = () => {
@@ -33,13 +35,13 @@ export const RentDetails = () => {
     <div>
       <div style={{ height: '1.6em' }}>
         <Logo style={{ height: '100%' }} />
-        {/* <NoStyledLink
+        <NoStyledLink
           to={`/rents/${rent.rentId}/settings`}
           style={{ float: 'right', display: 'flex', alignItems: 'center' }}
         >
           <SetOutline width='1.5em' height='100%' />
           <p style={{ paddingLeft: '.3em' }}>설정</p>
-        </NoStyledLink> */}
+        </NoStyledLink>
       </div>
       <RentName>{rent.name}</RentName>
       <RentProgress

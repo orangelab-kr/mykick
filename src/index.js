@@ -19,6 +19,7 @@ import { Token } from './pages/auth/Token';
 import { RentActivate } from './pages/rents/Activate';
 import { RentDetails } from './pages/rents/Details';
 import { RentList } from './pages/rents/List';
+import { RentSettings } from './pages/rents/Settings';
 import { RentStatus } from './pages/rents/Status';
 import { StartedComplete } from './pages/started/Complete';
 import { Estimate } from './pages/started/Estimate';
@@ -71,6 +72,7 @@ ReactDOM.render(
                   <Route path=':rentId' element={<RentDetails />} />
                   <Route path=':rentId/status' element={<RentStatus />} />
                   <Route path=':rentId/activate' element={<RentActivate />} />
+                  <Route path=':rentId/settings' element={<RentSettings />} />
                 </Route>
                 <Route path='auth' element={<Started />}>
                   <Route index element={redirect('/auth/login')} />
