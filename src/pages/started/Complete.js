@@ -44,10 +44,12 @@ export const StartedComplete = () => {
   const user = useUser({ clearCache: true });
   const cards = useCards({ clearCache: true });
   const storage = useStorage('started');
+  const general = useStorage('general');
 
   const requestEstimate = () => {
     if (!user || !cards) return;
-    const form = { ...storage.get() };
+    const providerCode = general.get('providerCode');
+    const form = { ...storage.get(), providerCode };
     form.name = `${user.name}님의 마이킥`;
     storage.setAll({});
     Client.post('/rents', form)
@@ -73,7 +75,7 @@ export const StartedComplete = () => {
   };
 
   const onClick = () => navigate(`/rents/${rent.rentId}/status`);
-  useEffect(requestEstimate, [cards, navigate, storage, user]);
+  useEffect(requestEstimate, [cards, general, navigate, storage, user]);
   return (
     <div>
       <StartedTitle>{loading ? '신청 중...' : '신청 완료'}</StartedTitle>
