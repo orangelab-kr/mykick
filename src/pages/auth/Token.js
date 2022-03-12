@@ -10,11 +10,11 @@ export const Token = () => {
   const navigate = useNavigate();
   const [code] = useQueryParam('code', StringParam);
   const [url] = useQueryParam('url', StringParam);
-  const gotoURL = useCallback(() => navigate(url), [navigate, url]);
+  const gotoURL = useCallback(() => navigate(url || '/'), [navigate, url]);
   const loginWithToken = useCallback(() => {
     if (!code) return navigate('/auth/signin');
     Client.get('/auth/token', { params: { code } })
-      .finally(() => navigate('/auth/signin'))
+      .catch(() => navigate('/auth/signin'))
       .then((r) => localStorage.setItem('mykick-token', r.data.token))
       .then(gotoURL);
   }, [code, gotoURL, navigate]);
