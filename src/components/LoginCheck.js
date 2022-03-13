@@ -8,7 +8,7 @@ export const LoginCheck = () => {
   const user = useUser();
   const storage = useStorage('general');
   const [providerCode] = useQueryParam('c', StringParam);
-  if (providerCode) storage.set('providerCode', providerCode);
+  storage.set('providerCode', providerCode);
   if (user === undefined) return <StartedLoading />;
   if (user === null) return <Navigate to='/started' />;
   if (user) return <Navigate to='/rents' />;

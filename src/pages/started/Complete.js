@@ -52,6 +52,7 @@ export const StartedComplete = () => {
     const form = { ...storage.get(), providerCode };
     form.name = `${user.name}님의 마이킥`;
     storage.setAll({});
+    general.setAll({});
     Client.post('/rents', form)
       .then(({ data }) => {
         setRent(data.rent);

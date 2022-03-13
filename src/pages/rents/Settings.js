@@ -1,5 +1,5 @@
 import { Result } from 'antd-mobile';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { DepthPage } from '../../components/DepthPage';
 import { StartedLoading } from '../../components/started/StartedLoading';
@@ -11,9 +11,8 @@ const Title = styled(StartedTitle)`
 `;
 
 export const RentSettings = () => {
-  const navigate = useNavigate();
   const { rentId } = useParams();
-  const [rent, setRent] = useRent(rentId);
+  const [rent] = useRent(rentId);
 
   if (!rent) return <StartedLoading />;
   return (
