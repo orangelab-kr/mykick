@@ -96,7 +96,7 @@ export const StartedComplete = () => {
         }}
       />
       <StartedBottom>
-        <StartedIndicator current={4} />
+        <StartedIndicator current={5} />
         <StartedBottomPrimary
           disabled={loading}
           description='영업일 기준 24시간내로 전화드립니다.'

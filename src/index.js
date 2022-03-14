@@ -21,12 +21,14 @@ import { RentDetails } from './pages/rents/Details';
 import { RentList } from './pages/rents/List';
 import { RentSettings } from './pages/rents/Settings';
 import { RentStatus } from './pages/rents/Status';
+import { Addons } from './pages/started/Addons';
 import { StartedComplete } from './pages/started/Complete';
 import { Estimate } from './pages/started/Estimate';
 import { Landing } from './pages/started/Landing';
 import { MyCare } from './pages/started/MyCare';
 import { MySafe } from './pages/started/MySafe';
 import { Pricing } from './pages/started/Pricing';
+import TagManager from 'react-gtm-module';
 
 export const baseURL =
   window.location.host === 'my.hikick.kr'
@@ -38,6 +40,9 @@ export const imageURL =
     ? 'https://coreservice.hikick.kr/v1/images'
     : 'https://coreservice.staging.hikick.kr/v1/images';
 
+const gtmId =
+  window.location.host === 'my.hikick.kr' ? 'G-N6GR1ZX2NR' : 'G-HK0V8EDDJG';
+
 const GlobalStyle = styled.div`
   * {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
@@ -46,6 +51,7 @@ const GlobalStyle = styled.div`
   }
 `;
 
+TagManager.initialize({ gtmId });
 const redirect = (to) => <Navigate to={to} />;
 
 ReactDOM.render(
@@ -64,6 +70,7 @@ ReactDOM.render(
                   <Route path='pricing' element={<Pricing />} />
                   <Route path='mysafe' element={<MySafe />} />
                   <Route path='mycare' element={<MyCare />} />
+                  <Route path='addons' element={<Addons />} />
                   <Route path='estimate' element={<Estimate />} />
                   <Route path='complete' element={<StartedComplete />} />
                 </Route>

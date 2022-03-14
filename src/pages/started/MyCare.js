@@ -38,7 +38,7 @@ export const MyCare = () => {
     }
 
     window.scrollTo(0, 0);
-    navigate('/started/estimate');
+    navigate('/started/addons');
   };
 
   useEffect(getAddon, [pricing]);

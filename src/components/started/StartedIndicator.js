@@ -3,7 +3,7 @@ import { AutoCenter, PageIndicator } from 'antd-mobile';
 export const StartedIndicator = ({ current }) => (
   <AutoCenter style={{ marginBottom: '.5em' }}>
     <PageIndicator
-      total={5}
+      total={6}
       current={current}
       style={{
         '--dot-size': '.4em',

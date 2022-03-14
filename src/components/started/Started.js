@@ -3,8 +3,8 @@ import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  margin: 20px 25px 10.8em 25px;
-  height: -webkit-fill-available;
+  margin: 20px 25px 5.5em 25px;
+  height: 100vh;
 `;
 
 export const Started = () => (
