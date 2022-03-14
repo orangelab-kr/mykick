@@ -44,7 +44,7 @@ const SelectBox = styled(Checkbox)`
 `;
 
 const Image = styled.img`
-  width: 60%;
+  height: 9em;
   margin-bottom: 0.8em;
 `;
 

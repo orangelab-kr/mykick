@@ -69,7 +69,7 @@ export const SignupInfo = () => {
     setReady(false);
     const { name, phoneId, birthday } = form.getFieldsValue();
     if (!dayjs(birthday).isValid()) return;
-    if (name.length <= 2) return;
+    if (!name || name.length <= 2) return;
     if (!phoneId) return;
     setReady(true);
   };
