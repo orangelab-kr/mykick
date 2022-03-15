@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { DepthPage } from '../../components/DepthPage';
 import { NoStyledLink } from '../../components/NoStyledLink';
 import { PayWithToss } from '../../components/PayWithToss';
+import { StartedAgree } from '../../components/started/StartedAgree';
 import { StartedBottom } from '../../components/started/StartedBottom/StartedBottom';
 import { StartedBottomPrimary } from '../../components/started/StartedBottom/StartedBottomPrimary';
 import { StartedBottomSecondary } from '../../components/started/StartedBottom/StartedBottomSecondary';
@@ -103,6 +104,7 @@ export const Estimate = () => {
             />
           </StartedEstimate>
           <StartedEstimateFirstPrice price={firstAddionalPrice} />
+          <StartedAgree />
         </div>
       ) : (
         <StartedLoading />

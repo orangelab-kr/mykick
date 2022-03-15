@@ -19,7 +19,7 @@ const RentName = styled(StartedTitle)`
 export const RentDetails = () => {
   const navigate = useNavigate();
   const { rentId } = useParams();
-  const [rent, setRent] = useRent(rentId, { realtime: true });
+  const [rent, setRent] = useRent(rentId, { realtime: true, clearCache: true });
   const [status] = useRentStatus(rentId, { realtime: true });
 
   const redirectStatusOrMain = () => {

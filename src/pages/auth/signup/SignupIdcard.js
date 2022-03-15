@@ -149,8 +149,11 @@ export const SignupIdcard = () => {
           <SafetyBold>암호화</SafetyBold>되어 저장됩니다.
         </SafetyDescription>
         <SafetyDescription>
-          고객님의 개인정보는 <SafetyBold>개인정보취급방침</SafetyBold>을 통해
-          자세한 처리방침을 확인하실 수 있습니다.
+          고객님의 개인정보는{' '}
+          <a href='https://i.hikick.kr/policy' target='_blank' rel='noreferrer'>
+            개인정보취급방침
+          </a>
+          을 통해 자세한 처리방침을 확인하실 수 있습니다.
         </SafetyDescription>
       </SafetyText>
 
