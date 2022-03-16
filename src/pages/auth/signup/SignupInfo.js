@@ -147,7 +147,7 @@ export const SignupInfo = () => {
         initialValues={{ birthday: dayjs('2000-01-01').toDate() }}
       >
         <Form.Item name='name' label='성함'>
-          <Input type='name' placeholder='홍길동' />
+          <Input type='name' autoComplete='name' placeholder='홍길동' />
         </Form.Item>
         <Form.Item name='birthday' label='생년월일'>
           <DateInput
@@ -160,6 +160,7 @@ export const SignupInfo = () => {
         <Form.Item name='phoneNo' label='전화번호'>
           <Input
             type='tel'
+            autoComplete='x'
             placeholder='010-0000-0000'
             onChange={onPhoneNoChange}
           />
