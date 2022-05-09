@@ -29,6 +29,9 @@ import { MyCare } from './pages/started/MyCare';
 import { MySafe } from './pages/started/MySafe';
 import { Pricing } from './pages/started/Pricing';
 import TagManager from 'react-gtm-module';
+import * as Sentry from '@sentry/react';
+import { BrowserTracing } from '@sentry/tracing';
+import SentryRRWeb from '@sentry/rrweb';
 
 export const baseURL =
   window.location.host === 'my.hikick.kr'
@@ -39,6 +42,12 @@ export const imageURL =
   window.location.host === 'my.hikick.kr'
     ? 'https://coreservice.hikick.kr/v1/images'
     : 'https://coreservice.staging.hikick.kr/v1/images';
+
+Sentry.init({
+  dsn: 'https://e15f7ca1a9994d3fb7133ff02b2eee6e@sentry.dan.al/11',
+  integrations: [new SentryRRWeb(), new BrowserTracing()],
+  tracesSampleRate: 1.0,
+});
 
 const gtmId =
   window.location.host === 'my.hikick.kr' ? 'G-N6GR1ZX2NR' : 'G-HK0V8EDDJG';
