@@ -11,7 +11,8 @@ export const RentList = () => {
   const redirectToRentDetails = () => {
     if (rents === undefined) return;
     if (rents === null) return navigate('/');
-    const filteredRents = rents.filter((r) => r.status !== 'Cancelled');
+    const status = ['Cancelled', 'Terminated'];
+    const filteredRents = rents.filter((r) => !status.includes(r.status));
     if (filteredRents.length <= 0) return navigate('/started/pricing');
     navigate(`/rents/${filteredRents[0].rentId}`);
   };
