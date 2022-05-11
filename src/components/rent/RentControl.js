@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { Client } from '../../tools/client';
 import { MapMyLocation } from '../map/MapMyLocation';
 import { RentActionButton } from './RentDetails/RentActionButton';
+import { RentMaxSpeedSlider } from './RentDetails/RentMaxSpeedSlider';
 
 export const RentControl = ({ rent, setRent, status }) => {
   const [loading, setLoading] = useState({});
@@ -20,6 +21,7 @@ export const RentControl = ({ rent, setRent, status }) => {
 
   const getCenter = () =>
     status ? { y: status.gps.latitude, x: status.gps.longitude } : currentLoc;
+
   const onClick =
     (path, confirm = false) =>
     async () => {
@@ -96,6 +98,7 @@ export const RentControl = ({ rent, setRent, status }) => {
           small
         />
       </Grid>
+      <RentMaxSpeedSlider rent={rent} setRent={setRent} />
     </div>
   );
 };
