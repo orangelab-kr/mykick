@@ -46,8 +46,8 @@ export const RentDetails = () => {
       <RentName>{rent.name}</RentName>
       <RentProgress
         expiredAt={rent.expiredAt}
-        scooterBattery={10}
-        iotBattery={100}
+        scooterBattery={status?.power.scooter.battery || 100}
+        iotBattery={status?.power.iot.battery || 100}
       />
       <Divider />
       {rent.status === 'Activated' ? (
