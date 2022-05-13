@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 export const RentMaxSpeedSlider = ({ rent, setRent }) => {
   const [loading, setLoading] = useState(false);
-  const [maxSpeed, setMaxSpeed] = useState(rent.maxSpeed || 25);
+  const [maxSpeed, setMaxSpeed] = useState(rent.maxSpeed);
   const speedMarks = {
     5: '5KM',
     10: '10KM',
@@ -21,7 +21,7 @@ export const RentMaxSpeedSlider = ({ rent, setRent }) => {
       const body = { maxSpeed };
       const path = `/rents/${rent.rentId}`;
       const { data } = await Client.patch(path, body);
-      setMaxSpeed(data.rent.maxSpeed || 25);
+      setMaxSpeed(data.rent.maxSpeed);
       setRent(data.rent);
     } finally {
       setLoading(false);
